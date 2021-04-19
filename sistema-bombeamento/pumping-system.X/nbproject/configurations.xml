@@ -7,6 +7,10 @@
       <itemPath>lcd.h</itemPath>
       <itemPath>config.h</itemPath>
       <itemPath>adc.h</itemPath>
+      <itemPath>pump.h</itemPath>
+      <itemPath>usertypes.h</itemPath>
+      <itemPath>regoperations.h</itemPath>
+      <itemPath>debounce.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,6 +22,9 @@
       <itemPath>main.c</itemPath>
       <itemPath>lcd.c</itemPath>
       <itemPath>adc.c</itemPath>
+      <itemPath>pump.c</itemPath>
+      <itemPath>regoperations.c</itemPath>
+      <itemPath>debounce.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -33,7 +40,7 @@
         <targetDevice>PIC16F877A</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool></platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.20</languageToolchainVersion>
         <platform>2</platform>

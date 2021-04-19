@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "config.h"
 #include "lcd.h"
+#include "usertypes.h"
 
 //LCD Functions Developed by Circuit Digest.
 void Lcd_SetBit(char data_bit) //Based on the Hex value Set the Bits of the Data Lines
@@ -31,11 +32,11 @@ void Lcd_Cmd(char a)
     RS = 0;           
     Lcd_SetBit(a); //Incoming Hex value
     EN  = 1;         
-        __delay_ms(4);
+        //__delay_ms(4);
         EN  = 0;         
 }
 
-Lcd_Clear()
+void Lcd_Clear()
 {
     Lcd_Cmd(0); //Clear the LCD
     Lcd_Cmd(1); //Move the curser to first position
@@ -88,11 +89,11 @@ void Lcd_Print_Char(char data)  //Send 8-bits through 4-bit mode
    RS = 1;             // => RS = 1
    Lcd_SetBit(Upper_Nibble>>4);             //Send upper half by shifting by 4
    EN = 1;
-   for(int i=2130483; i<=0; i--)  NOP(); 
+   //for(int i=2130483; i<=0; i--)  NOP(); 
    EN = 0;
    Lcd_SetBit(Lower_Nibble); //Send Lower half
    EN = 1;
-   for(int i=2130483; i<=0; i--)  NOP();
+   //for(int i=2130483; i<=0; i--)  NOP();
    EN = 0;
 }
 
@@ -101,4 +102,13 @@ void Lcd_Print_String(char *a)
     int i;
     for(i=0;a[i]!='\0';i++)
        Lcd_Print_Char(a[i]);  //Split the string using pointers and call the Char function 
+}
+
+void Show_Display(lcd display)
+{   
+    Lcd_Clear();
+    Lcd_Set_Cursor(1,1);
+    Lcd_Print_String(display.line0);
+    Lcd_Set_Cursor(2,1);
+    Lcd_Print_String(display.line1);
 }
