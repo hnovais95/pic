@@ -10,6 +10,9 @@
       <itemPath>adc.h</itemPath>
       <itemPath>flexlcd.h</itemPath>
       <itemPath>configbits.h</itemPath>
+      <itemPath>modbus.h</itemPath>
+      <itemPath>system.h</itemPath>
+      <itemPath>user.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,6 +25,9 @@
       <itemPath>regoperations.c</itemPath>
       <itemPath>debounce.c</itemPath>
       <itemPath>adc.c</itemPath>
+      <itemPath>modbus.c</itemPath>
+      <itemPath>system.c</itemPath>
+      <itemPath>user.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -31,6 +37,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../../../Downloads/MODBUS.X/MODBUS.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

@@ -10,7 +10,8 @@ typedef enum
 { 
     CURRENT_LEVEL, 
     OPERATION_MODE,
-    MIN_LEVEL
+    MIN_LEVEL,
+    MODBUS
 } screen_mode;
 
 typedef struct

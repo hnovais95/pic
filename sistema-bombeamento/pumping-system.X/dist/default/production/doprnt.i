@@ -229,6 +229,12 @@ const static unsigned int dpowers[] = {1, 10, 100, 1000, 10000,
 # 363
 };
 
+
+const static unsigned int hexpowers[] = {1, 0x10, 0x100, 0x1000,
+
+# 370
+};
+
 # 463
 int
 
@@ -241,6 +247,8 @@ va_list ap;
 
 
 char c;
+
+int width;
 
 # 521
 signed char prec;
@@ -272,8 +280,34 @@ if(c != '%')
 continue;
 }
 
-# 565
+
+width = 0;
+
 flag = 0;
+
+for(;;) {
+switch(*f) {
+
+# 596
+case '0':
+flag |= 0x04;
+f++;
+continue;
+
+}
+break;
+}
+
+# 614
+if(isdigit((unsigned)*f)) {
+width = 0;
+do {
+width *= 10;
+width += *f++ - '0';
+} while(isdigit((unsigned)*f));
+
+# 625
+}
 
 # 661
 switch(c = *f++) {
@@ -286,17 +320,50 @@ case 'd':
 case 'i':
 break;
 
+# 738
+case 'X':
+
+# 744
+case 'x':
+
+
+flag |= 0x80;
+
+break;
+
+# 776
+dostring:
+
+# 783
+if(((unsigned)width) > len)
+width -= len;
+else
+width = 0;
+
+# 790
+while(width--)
+((*sp++ = (' ')));
+
+while(len--)
+((*sp++ = (*cp++)));
+
+# 800
+continue;
+
 # 828
 default:
 
-# 835
-((*sp++ = (c)));
-continue;
+
+cp = (char *)&c;
+len = 1;
+goto dostring;
 
 # 848
 }
 
-# 1279
+# 1277
+if((flag & 0x80) == 0x00)
+
 {
 
 # 1285
@@ -309,13 +376,82 @@ val = -val;
 
 }
 
+else
+
+
+
+
+{
+
+# 1312
+val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
+}
+
+# 1320
+switch((unsigned char)(flag & 0x80)) {
+
+
+
+
+case 0x00:
+
 # 1331
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(val < dpowers[c])
 break;
 
-# 1448
+break;
+
+
+
+
+case 0x80:
+
+for(c = 1 ; c != sizeof hexpowers/sizeof hexpowers[0] ; c++)
+if(val < hexpowers[c])
+break;
+
+break;
+
+# 1362
+}
+
+# 1371
+if(width && flag & 0x03)
+width--;
+
+# 1407
+if(width > c)
+width -= c;
+else
+width = 0;
+
+
+if(flag & 0x04) {
+
+
+
+
+if(flag & 0x03)
+((*sp++ = ('-')));
+
+# 1441
+if(width)
+do
+((*sp++ = ('0')));
+while(--width);
+
+} else
+
 {
+
+if(width
+
+# 1454
+)
+do
+((*sp++ = (' ')));
+while(--width);
 
 # 1464
 if(flag & 0x03)
@@ -329,11 +465,34 @@ prec = c;
 
 while(prec--) {
 
-# 1504
+switch((unsigned char)(flag & 0x80))
+
 {
+
+
+
+
+case 0x00:
 
 # 1515
 c = (val / dpowers[(unsigned char)prec]) % 10 + '0';
+
+break;
+
+# 1523
+case 0x80:
+
+{
+unsigned char idx = (val / hexpowers[(unsigned char)prec]) & 0xF;
+
+
+
+c = "0123456789ABCDEF"[idx];
+
+# 1534
+}
+
+break;
 
 # 1549
 }

@@ -1,61 +1,5 @@
 
-# 1 "main.c"
-
-
-# 7 "configbits.h"
-#pragma config OSC = HS
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOREN = SBORDIS
-#pragma config BORV = 3
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config CCP2MX = PORTC
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = ON
-#pragma config LVP = ON
-#pragma config XINST = OFF
-
-
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
-
-
-#pragma config CPB = OFF
-#pragma config CPD = OFF
-
-
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
-
-
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
-
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
+# 1 "modbus.c"
 
 # 18 "C:/Program Files/Microchip/xc8/v2.32/pic/include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4579,262 +4523,8 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 
-# 48 "flexlcd.h"
-void Lcd_Init(void);
-void Lcd_Out(unsigned char y, unsigned char x, const char *buffer);
-void Lcd_Out2(unsigned char y, unsigned char x, char *buffer);
-void Lcd_Chr_CP(char data);
-void Lcd_Cmd(unsigned char data);
-
-void Lcd_Init(void){
-unsigned char data;
-TRISDbits.TRISD7 = 0;
-TRISDbits.TRISD6 = 0;
-TRISDbits.TRISD5 = 0;
-TRISDbits.TRISD4 = 0;
-TRISEbits.TRISE2 = 0;
-TRISEbits.TRISE1 = 0;
-PORTDbits.RD7 = 0;
-PORTDbits.RD6 = 0;
-PORTDbits.RD5 = 0;
-PORTDbits.RD4 = 0;
-PORTEbits.RE1 = 0;
-PORTEbits.RE2 = 0;
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-for(data = 1; data < 4; data ++)
-{
-PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 1; PORTEbits.RE1 = 0;
-PORTEbits.RE2 = 0; PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 1;
-PORTEbits.RE1 = 1; PORTEbits.RE2 = 0;
-_delay((unsigned long)((5)*(10000000/4000000.0)));
-PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 1; PORTEbits.RE1 = 0;
-PORTEbits.RE2 = 0;
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-}
-PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 0; PORTEbits.RE1 = 0; PORTEbits.RE2 = 0;
-PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 0; PORTEbits.RE1 = 1; PORTEbits.RE2 = 0;
-_delay((unsigned long)((5)*(10000000/4000000.0)));
-PORTDbits.RD7 = 0; PORTDbits.RD6 = 0; PORTDbits.RD5 = 1; PORTDbits.RD4 = 0; PORTEbits.RE1 = 0; PORTEbits.RE2 = 0;
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-data = 40; Lcd_Cmd(data);
-data = 16; Lcd_Cmd(data);
-data = 1; Lcd_Cmd(data);
-data = 15; Lcd_Cmd(data);
-}
-
-
-void Lcd_Out(unsigned char y, unsigned char x, const char *buffer)
-{
-unsigned char data;
-switch (y)
-{
-case 1: data = 128 + x; break;
-case 2: data = 192 + x; break;
-case 3: data = 148 + x; break;
-case 4: data = 212 + x; break;
-default: break;
-}
-Lcd_Cmd(data);
-while(*buffer)
-{
-Lcd_Chr_CP(*buffer);
-buffer++;
-}
-return;
-}
-
-
-void Lcd_Chr_CP(char data){
-PORTEbits.RE1 = 0; PORTEbits.RE2 = 1;
-PORTDbits.RD7 = (data & 0b10000000)>>7; PORTDbits.RD6 = (data & 0b01000000)>>6;
-PORTDbits.RD5 = (data & 0b00100000)>>5; PORTDbits.RD4 = (data & 0b00010000)>>4;
-_delay(10);
-PORTEbits.RE1 = 1; _delay((unsigned long)((5)*(10000000/4000000.0))); PORTEbits.RE1 = 0;
-PORTDbits.RD7 = (data & 0b00001000)>>3; PORTDbits.RD6 = (data & 0b00000100)>>2;
-PORTDbits.RD5 = (data & 0b00000010)>>1; PORTDbits.RD4 = (data & 0b00000001);
-_delay(10);
-PORTEbits.RE1 = 1; _delay((unsigned long)((5)*(10000000/4000000.0))); PORTEbits.RE1 = 0;
-_delay((unsigned long)((5)*(10000000/4000000.0))); _delay((unsigned long)((5500)*(10000000/4000000.0)));
-}
-
-
-void Lcd_Cmd(unsigned char data){
-PORTEbits.RE1 = 0; PORTEbits.RE2 = 0;
-PORTDbits.RD7 = (data & 0b10000000)>>7; PORTDbits.RD6 = (data & 0b01000000)>>6;
-PORTDbits.RD5 = (data & 0b00100000)>>5; PORTDbits.RD4 = (data & 0b00010000)>>4;
-_delay(10);
-PORTEbits.RE1 = 1; _delay((unsigned long)((5)*(10000000/4000000.0))); PORTEbits.RE1 = 0;
-PORTDbits.RD7 = (data & 0b00001000)>>3; PORTDbits.RD6 = (data & 0b00000100)>>2;
-PORTDbits.RD5 = (data & 0b00000010)>>1; PORTDbits.RD4 = (data & 0b00000001);
-_delay(10);
-PORTEbits.RE1 = 1; _delay((unsigned long)((5)*(10000000/4000000.0))); PORTEbits.RE1 = 0;
-_delay((unsigned long)((5500)*(10000000/4000000.0)));
-}
-
-# 27 "adc.h"
-void adc_init(void);
-
-unsigned int adc_amostra(unsigned char canal);
-
-# 2 "regoperations.h"
-void SetBit(unsigned *port, unsigned pin);
-
-void ClearBit(unsigned *port, unsigned pin);
-
-void TougleBit(unsigned *port, unsigned pin);
-
-int CheckBit(unsigned port, unsigned pin);
-
-# 4 "C:/Program Files/Microchip/xc8/v2.32/pic/include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdio.h"
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\errno.h"
-extern int errno;
-
-# 12 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
 # 15 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
-
-# 14 "C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 1 "usertypes.h"
-typedef unsigned char uint8;
-
-typedef enum
-{
-AUTOMATIC,
-MANUAL
-} operation_mode;
-
-typedef enum
-{
-CURRENT_LEVEL,
-OPERATION_MODE,
-MIN_LEVEL,
-MODBUS
-} screen_mode;
-
-typedef struct
-{
-float level;
-float min_level;
-float max_level;
-} tank;
-
-typedef struct
-{
-char line0 [16];
-char line1 [16];
-} lcd;
-
-# 2 "regoperations.h"
-void SetBit(unsigned *port, unsigned pin);
-
-void ClearBit(unsigned *port, unsigned pin);
-
-void TougleBit(unsigned *port, unsigned pin);
-
-int CheckBit(unsigned port, unsigned pin);
-
-# 5 "debounce.h"
-void Debounce(unsigned port, unsigned pin, unsigned *bt_press, unsigned *filter, void (*ptr_f)(void));
-
-# 23 "system.h"
-void ConfigInterrupts(void);
-void ClsUSART(void);
-void OpnUSART(void);
-void OpenTmr0(void);
 
 # 4 "modbus.h"
 volatile char endOfMessage,newMessage = 1;
@@ -4883,334 +4573,499 @@ void putrsUSART ( const  char *data);
 # 654
 void baudUSART ( unsigned char baudconfig);
 
-# 47 "main.c"
-int filter_bt_operation_mode = 10;;
-int filter_bt_on_off_pump = 10;;
-int filter_bt_min_lv1_incr = 10;;
-int filter_bt_min_lv2_incr = 10;;
+# 23 "system.h"
+void ConfigInterrupts(void);
+void ClsUSART(void);
+void OpnUSART(void);
+void OpenTmr0(void);
 
+# 30 "modbus.c"
+void modbusDelay(void)
+{
 
-int bt_operation_mode_press = 0;
-int bt_on_off_pump_press = 0;
-int bt_min_lv1_incr_press = 0;
-int bt_min_lv2_incr_press = 0;
-volatile __bit refresh_display = 0;
+TMR0H = 0xF5;
+TMR0L = 0xD7;
+}
 
-
-volatile int count_screen = 0;
-volatile unsigned int count_refresh_display = 0;
-
-
-volatile operation_mode operation = AUTOMATIC;
-volatile screen_mode screen = CURRENT_LEVEL;
-volatile tank tank1, tank2;
-volatile lcd display;
-
-# 73
-uint8 INCREMENT = 10;
-
-# 79
-void interrupt isr(void);
-void Set_Display_Message();
-void Change_Mode();
-void Min_Lv1_Incr();
-void Min_Lv2_Incr();
-void Automatic_Mode();
-void Manual_Mode();
-void TouglePump();
-void Read_Level();
-void Receive_Message();
-void Write_Message();
-void Refresh_Screen();
-void Initialize_Tanks();
-void Configure_External_Interrupt();
-void Configure_Timer_Interrupt();
-void Configure_Registers();
-
-# 100
-void main(void) {
-Configure_Registers();
-adc_init();
-Lcd_Init();
-Lcd_Cmd(12);
-Initialize_Tanks();
-
-
+void clearResponse(void)
+{
+unsigned char i;
+for(i=0;i<125;i++){
+response[i] = 0;
+}
+ClsUSART();
 OpnUSART();
-ConfigInterrupts();
-
-while(1)
-{
-asm(" clrwdt");
-
-if (modbusMessage)
-{
-decodeIt();
-Receive_Message();
-}
-Write_Message();
-
-Read_Level();
-
-Debounce(PORTB, 0, &bt_operation_mode_press, &filter_bt_operation_mode, Change_Mode);
-
-if (operation == AUTOMATIC) Automatic_Mode(); else Manual_Mode();
-
-Debounce(PORTB, 3, &bt_min_lv1_incr_press, &filter_bt_min_lv1_incr, Min_Lv1_Incr);
-Debounce(PORTB, 4, &bt_min_lv2_incr_press, &filter_bt_min_lv2_incr, Min_Lv2_Incr);
-
-if (refresh_display) Refresh_Screen();
-}
-return;
 }
 
-# 140
-void interrupt isr(void)
+void decodeIt(void)
 {
-
-if (PIR1bits.TMR1IF == 1)
-{
-PIR1bits.TMR1IF = 0;
-TMR1L = 0x2C;
-TMR1H = 0xCF;
-count_screen++;
-count_refresh_display++;
-
-
-if (count_screen == 100)
-{
-count_screen = 0;
-++screen;
-if (screen == 4) screen = 0;
+if(received[0] == 1){
+if(checkCRC()){
+if(received[1] == 0x01){
+readCoil();
 }
-
-
-if (count_refresh_display == 25)
-{
-count_refresh_display = 0;
-refresh_display = 1;
+else if(received[1] == 0x02){
+readInputCoil();
+}
+else if(received[1] == 0x03){
+readReg();
+}
+else if(received[1] == 0x04){
+readInputReg();
+}
+else if(received[1] == 0x05){
+writeCoil();
+}
+else if(received[1] == 0x06){
+writeReg();
 }
 }
-
-
-if (PIR1bits.RCIF)
-{
-if ((!endOfMessage) && (!newMessage))
-{
-if (PIR1bits.TXIF)
-{
-received[z] = RCREG;
-z++;
-timerCount = 0;
 }
-}
-
-if (newMessage)
-{
-OpenTmr0();
-if (PIR1bits.TXIF)
-{
-received[z] = RCREG;
-z++;
-newMessage = 0;
-endOfMessage = 0;
-messageLength = 0;
 modbusMessage = 0;
-timerCount = 0;
-return;
-}
-}
-PIR1bits.RCIF = 0;
 }
 
+void readReg(void)
+{
+unsigned int rr_Address = 0;
+unsigned int rr_numRegs = 0;
+unsigned char j = 3;
+unsigned int crc = 0;
+unsigned int i = 0;
 
-if (INTCONbits.TMR0IF)
-{
-modbusDelay();
-timerCount++;
-if (timerCount > 4)
-{
-endOfMessage = 1;
-newMessage = 1;
-messageLength = z;
-modbusMessage = 1;
-for (z = (messageLength); z != 125; z++)
-{
-received[z] = 0;
-}
-z = 0;
-T0CONbits.TMR0ON = 0;
-timerCount = 0;
-}
-INTCONbits.TMR0IF = 0;
-}
-}
 
-# 225
-void Set_Display_Message()
-{
-if (screen == CURRENT_LEVEL)
-{
-sprintf(display.line0, "CURRENT LV1: %d%%  ", (int)tank1.level);
-sprintf(display.line1, "CURRENT LV2: %d%%  ", (int)tank2.level);
-}
-else if (screen == OPERATION_MODE)
-{
-strcpy(display.line0, "OPERATION MODE: ");
-strcpy(display.line1, operation == AUTOMATIC ? "AUTOMATIC      " : "MANUAL         ");
-}
-else if (screen == MIN_LEVEL)
-{
-sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
-sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
-}
-else if (screen == MODBUS)
-{
-strcpy(display.line0, "MODBUS:         ");
-sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
-}
-}
+rr_Address = received[2];
+rr_Address <<= 8;
+rr_Address |= received[3];
 
-void Min_Lv1_Incr()
-{
-screen = MIN_LEVEL;
-Refresh_Screen();
-TMR1L = 0x2C;
-TMR1H = 0xCF;
-count_screen = -250;
 
-if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
-else tank1.min_level = 0;
+rr_numRegs = received[4];
+rr_numRegs <<= 8;
+rr_numRegs |= received[5];
+
+response[0] = 1;
+response[1] = 0x03;
+response[2] = rr_numRegs*2;
+
+for(i=rr_Address;i<(rr_Address + rr_numRegs);i++){
+if(holdingReg[i] > 255){
+
+response[j] = holdingReg[i] >> 8;
+j++;
+response[j] = holdingReg[i];
+j++;
+}
+else{
+response[j] = 0x00;
+j++;
+response[j] = holdingReg[i];
+j++;
+}
+}
+crc = generateCRC(j+2);
+response[j] = crc >> 8;
+j++;
+response[j] = crc;
+j+=2;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=j;i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+j=0;
+
+clearResponse();
 }
 
-void Min_Lv2_Incr()
+void readInputReg(void)
 {
-screen = MIN_LEVEL;
-Refresh_Screen();
-TMR1L = 0x2C;
-TMR1H = 0xCF;
-count_screen = -250;
+unsigned int rr_Address = 0;
+unsigned int rr_numRegs = 0;
+unsigned char j = 3;
+unsigned int crc = 0;
+unsigned int i = 0;
 
-if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
-else tank2.min_level = 0;
+
+rr_Address = received[2];
+rr_Address <<= 8;
+rr_Address |= received[3];
+
+
+rr_numRegs = received[4];
+rr_numRegs <<= 8;
+rr_numRegs |= received[5];
+
+response[0] = 1;
+response[1] = 0x04;
+response[2] = rr_numRegs*2;
+
+for(i=rr_Address;i<(rr_Address + rr_numRegs);i++){
+if(holdingReg[i] > 255){
+
+response[j] = holdingReg[i] >> 8;
+j++;
+response[j] = holdingReg[i];
+j++;
+}
+else{
+response[j] = 0x00;
+j++;
+response[j] = holdingReg[i];
+j++;
+}
+}
+crc = generateCRC(j+2);
+response[j] = crc >> 8;
+j++;
+response[j] = crc;
+j+=2;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=j;i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+j=0;
+
+clearResponse();
 }
 
-void Tougle_Pump()
-{
-TougleBit(&LATC, 0);
-}
-
-void Change_Mode()
-{
-LATDbits.LATD0 = ~LATDbits.LATD0;
-if (operation == AUTOMATIC) operation = MANUAL; else operation = AUTOMATIC;
-if ((operation == MANUAL) && (CheckBit(PORTC, 0) == 1)) ClearBit(&LATC, 0);
-}
-
-void Automatic_Mode()
-{
-bool isFull = tank2.level >= tank2.max_level ? 1 : 0;
-if ((tank1.level > tank1.min_level) && (tank2.level < tank2.min_level))
-{
-SetBit(&LATC, 0);
-}
-else if (tank1.level <= tank1.min_level || isFull)
-{
-ClearBit(&LATC, 0);
-}
-}
-
-void Manual_Mode()
-{
-Debounce(PORTB, 1, &bt_on_off_pump_press, &filter_bt_on_off_pump, Tougle_Pump);
-}
-
-void Read_Level()
-{
-int adcTank1 = adc_amostra(0);
-int adcTank2 = adc_amostra(1);
-
-tank1.level = (adcTank1 / 10.23);
-tank2.level = (adcTank2 / 10.23);
-}
-
-void Receive_Message()
-{
-if (holdingReg[0] == 1) SetBit(&LATC, 0);
-else ClearBit(&LATC, 0);
-
-operation = holdingReg[1];
-tank1.min_level = holdingReg[2];
-tank2.min_level = holdingReg[3];
-}
-
-void Write_Message()
-{
-holdingReg[4] = tank1.level;
-holdingReg[5] = tank2.level;
-}
-
-void Show_Display(lcd display)
-{
-Lcd_Out(1, 0, display.line0);
-Lcd_Out(2, 0, display.line1);
-}
-
-void Refresh_Screen()
-{
-Set_Display_Message();
-Show_Display(display);
-refresh_display = 0;
-}
-
-void Initialize_Tanks()
+void writeReg(void)
 {
 
-tank1.level = 0;
-tank1.min_level = 0;
-tank1.max_level = 100;
 
-tank2.level = 0;
-tank2.min_level = 0;
-tank2.max_level = 90;
+
+unsigned int wr_AddressLow = 0;
+unsigned int wr_AddressHigh = 0;
+unsigned int wr_Address = 0;
+
+unsigned int wr_valToWrite = 0;
+unsigned int wr_valToWriteLow = 0;
+unsigned int wr_valToWriteHigh = 0;
+
+unsigned int crc = 0;
+unsigned int i = 0;
+
+
+wr_Address = received[2];
+wr_Address <<= 8;
+wr_Address |= received[3];
+
+wr_AddressLow = received[3];
+wr_AddressHigh = received[2];
+
+
+wr_valToWrite = received[4];
+wr_valToWrite <<= 8;
+wr_valToWrite |= received[5];
+
+wr_valToWriteLow = received[5];
+wr_valToWriteHigh = received[4];
+
+holdingReg[wr_Address] = wr_valToWrite;
+
+response[0] = 1;
+response[1] = 0x06;
+response[3] = wr_AddressLow;
+response[2] = wr_AddressHigh;
+
+
+response[4] = wr_valToWriteHigh;
+response[5] = wr_valToWriteLow;
+
+crc = generateCRC(8);
+
+response[6] = crc >> 8;
+response[7] = crc;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=9;i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+clearResponse();
 }
 
-void Configure_External_Interrupt()
+void readCoil(void)
 {
 
-# 358
+
+
+unsigned int rc_Address = 0;
+unsigned int rc_numCoils = 0;
+unsigned int crc = 0;
+
+unsigned char howManyBytes = 0;
+unsigned char remainder = 0;
+unsigned char lsb = 0;
+unsigned char i,j,k,l = 0;
+
+
+rc_Address = received[2];
+rc_Address <<=8;
+rc_Address |= received[3];
+
+
+rc_numCoils = received[4];
+rc_numCoils <<= 8;
+rc_numCoils |= received[5];
+
+response[0] = 1;
+response[1] = 0x01;
+
+howManyBytes = rc_numCoils/8;
+remainder = rc_numCoils % 8;
+
+if(remainder){
+howManyBytes += 1;
+}
+response[2] = howManyBytes;
+
+l = rc_Address;
+k = 3;
+
+for(i=howManyBytes; i!=0; i--){
+if(i>1){
+for(j=0;j!=8;j++){
+if(coils[l]){
+lsb = 1;
+}
+else{
+lsb = 0;
+}
+response[k] ^= (lsb << j);
+l++;
+}
+k++;
+}
+else{
+for(j=0;j!=remainder;j++){
+if(coils[l]){
+lsb = 1;
+}
+else{
+lsb = 0;
+}
+response[k] ^= (lsb << j);
+l++;
+}
+k++;
+}
+}
+crc = generateCRC(k+2);
+
+response[k] = crc >> 8;
+response[k+1] = crc;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=(k+3);i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+clearResponse();
 }
 
-void Configure_Timer_Interrupt()
+void readInputCoil(void)
 {
-PIE1bits.TMR1IE = 1;
-PIR1bits.TMR1IF = 0;
-TMR1L = 0x2C;
-TMR1H = 0xCF;
-T1CON = 0b00100001;
+
+
+
+unsigned int rc_Address = 0;
+unsigned int rc_numCoils = 0;
+unsigned int crc = 0;
+
+unsigned char howManyBytes = 0;
+unsigned char remainder = 0;
+unsigned char lsb = 0;
+unsigned char i,j,k,l = 0;
+
+
+rc_Address = received[2];
+rc_Address <<=8;
+rc_Address |= received[3];
+
+
+rc_numCoils = received[4];
+rc_numCoils <<= 8;
+rc_numCoils |= received[5];
+
+response[0] = 1;
+response[1] = 0x02;
+
+howManyBytes = rc_numCoils/8;
+remainder = rc_numCoils % 8;
+
+if(remainder){
+howManyBytes += 1;
+}
+response[2] = howManyBytes;
+
+l = rc_Address;
+k = 3;
+
+for(i=howManyBytes; i!=0; i--){
+if(i>1){
+for(j=0;j!=8;j++){
+if(coils[l]){
+lsb = 1;
+}
+else{
+lsb = 0;
+}
+response[k] ^= (lsb << j);
+l++;
+}
+k++;
+}
+else{
+for(j=0;j!=remainder;j++){
+if(coils[l]){
+lsb = 1;
+}
+else{
+lsb = 0;
+}
+response[k] ^= (lsb << j);
+l++;
+}
+k++;
+}
+}
+crc = generateCRC(k+2);
+
+response[k] = crc >> 8;
+response[k+1] = crc;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=(k+3);i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+clearResponse();
 }
 
-void Configure_Registers()
+void writeCoil(void)
 {
-INTCON2bits.RBPU = 0;
 
 
-TRISA = 0xff;
-TRISB = 0x3f;
-TRISC = 0x00;
-TRISD = 0x00;
-TRISE = 0x00;
 
-PORTA = 0; LATA = 0;
-PORTB = 0; LATB = 0;
-PORTC = 0; LATC = 0;
-PORTD = 0; LATD = 0;
-PORTE = 0; LATE = 0;
+unsigned int wc_AddressLow = 0;
+unsigned int wc_AddressHigh = 0;
+unsigned int wc_Address = 0;
 
-PEIE = 1;
-(INTCONbits.GIE = 1);
-Configure_External_Interrupt();
-Configure_Timer_Interrupt();
+unsigned int wc_valToWrite = 0;
+unsigned int wc_valToWriteLow = 0;
+unsigned int wc_valToWriteHigh = 0;
+int i = 0;
+unsigned int crc = 0;
 
-ADCON1 = 0b00001111;
+
+wc_Address = received[2];
+wc_Address <<= 8;
+wc_Address |= received[3];
+
+wc_AddressLow = received[3];
+wc_AddressHigh = received[2];
+
+
+wc_valToWrite = received[4];
+wc_valToWrite <<= 8;
+wc_valToWrite |= received[5];
+
+wc_valToWriteLow = received[5];
+wc_valToWriteHigh = received[4];
+
+if(wc_valToWrite){
+coils[wc_Address] = 0xFF;
+}
+else{
+coils[wc_Address] = 0x00;
+}
+
+response[0] = 1;
+response[1] = 0x05;
+response[3] = wc_AddressLow;
+response[2] = wc_AddressHigh;
+
+
+response[4] = wc_valToWriteHigh;
+response[5] = wc_valToWriteLow;
+
+crc = generateCRC(8);
+
+response[6] = crc >> 8;
+response[7] = crc;
+
+LATBbits.LATB7 = 1;
+for(i=0;i!=9;i++){
+while((!TXSTAbits.TRMT));
+TXREG = response[i];
+}
+LATBbits.LATB7 = 0;
+clearResponse();
+}
+
+unsigned int generateCRC(unsigned char messageLength)
+{
+unsigned int crc = 0xFFFF;
+unsigned int crcHigh = 0;
+unsigned int crcLow = 0;
+int i,j = 0;
+
+for(i=0;i<messageLength-2;i++){
+crc ^= response[i];
+for(j=8; j!=0; j--){
+if((crc & 0x0001) != 0){
+crc >>= 1;
+crc ^= 0xA001;
+}
+else{
+crc >>= 1;
+}
+}
+}
+
+crcHigh = (crc & 0x00FF) <<8;
+crcLow = (crc & 0xFF00) >>8;
+crcHigh |= crcLow;
+crc = crcHigh;
+return crc;
+}
+
+unsigned char checkCRC(void)
+{
+unsigned int crc = 0xFFFF;
+unsigned int crcHigh = 0;
+unsigned int crcLow = 0;
+int i,j = 0;
+
+for(i=0;i<messageLength-2;i++){
+crc ^= received[i];
+for(j=8; j!=0; j--){
+if((crc & 0x0001) != 0){
+crc >>= 1;
+crc ^= 0xA001;
+}
+else{
+crc >>= 1;
+}
+}
+}
+
+crcHigh = (crc & 0x00FF);
+crcLow = (crc & 0xFF00) >>8;
+if((crcHigh == received[i])&&(crcLow == received[i+1]))
+{
+return 1;
+}
+else{
+return 0;
+}
+
+
 }

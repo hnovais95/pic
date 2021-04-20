@@ -5,7 +5,7 @@
  * Created on 15 de Março de 2021, 23:44
  */
 
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 10000000
 
 
 /*******************************************************************
@@ -21,6 +21,11 @@
 #include <string.h>
 #include "usertypes.h"
 #include "debounce.h"
+#include "system.h"        /* System funct/params, like osc/peripheral config */
+#include "user.h"          /* User funct/params, such as InitApp */
+#include "modbus.h"
+#include <usart.h>
+#include <stdint.h>        /* For uint8_t definition */
 
 
 /*******************************************************************
@@ -71,6 +76,7 @@ uint8 INCREMENT = 10;
 /*******************************************************************
 *   PROTOTYPES
 *******************************************************************/
+void interrupt isr(void);
 void Set_Display_Message();
 void Change_Mode();
 void Min_Lv1_Incr();
@@ -79,49 +85,13 @@ void Automatic_Mode();
 void Manual_Mode();
 void TouglePump();
 void Read_Level();
+void Receive_Message();
+void Write_Message();
 void Refresh_Screen();
 void Initialize_Tanks();
 void Configure_External_Interrupt();
 void Configure_Timer_Interrupt();
 void Configure_Registers();
-
-
-/*******************************************************************
-*   INTERRUPT FUNCTION
-*******************************************************************/
-void interrupt isr(void)
-{   
-    // Timer interrupt
-    if (INTCONbits.TMR0IF == 1)
-    {
-        INTCONbits.TMR0IF = 0;        
-        TMR0 = 131;
-        count_screen++;
-        count_refresh_display++;
-                
-        // Switches screen mode every t1 seconds
-        if (count_screen == 500) // ~2s
-        {            
-            count_screen = 0;
-            ++screen;
-            if (screen == 3) screen = 0;
-        }
-        
-        // Refresh display every t2 seconds
-        if (count_refresh_display == 125) // ~500ms
-        {
-            count_refresh_display = 0;
-            refresh_display = 1;
-        }
-    }
-    
-    /*// Pin RB0 interrupt
-    if (INTCONbits.INT0IF == 1)
-    {
-        Debounce(PORTB, 0, &bt_operation_mode_press, &filter_bt_operation_mode, Change_Mode); // If button is pressed change operation mode
-        INTCONbits.INT0IF = 0;
-    }*/
-}
 
 
 /*******************************************************************
@@ -133,11 +103,22 @@ void main(void) {
     Lcd_Init();
     Lcd_Cmd(LCD_CURSOR_OFF);
     Initialize_Tanks();
+    
+    // Initialize modbus communication
+    OpnUSART();
+    ConfigInterrupts();
  
     while(1)
     {
         CLRWDT();
         
+        if (modbusMessage)
+        {
+            decodeIt();
+            Receive_Message();
+        }
+        Write_Message();
+
         Read_Level();
         
         Debounce(PORTB, bt_operation_mode, &bt_operation_mode_press, &filter_bt_operation_mode, Change_Mode); // If button is pressed change operation mode
@@ -150,6 +131,91 @@ void main(void) {
         if (refresh_display) Refresh_Screen();
     }
     return;
+}
+
+
+/*******************************************************************
+*   INTERRUPT FUNCTION
+*******************************************************************/
+void interrupt isr(void)
+{   
+    // Timer interrupt
+    if (PIR1bits.TMR1IF == 1)
+    {
+        PIR1bits.TMR1IF = 0;
+        TMR1L = 0x2C;   // reload TMR1L;
+        TMR1H = 0xCF;   // reload TMR1H;
+        count_screen++;
+        count_refresh_display++;
+                
+        // Switches screen mode every t1 seconds
+        if (count_screen == 100) // ~2s
+        {            
+            count_screen = 0;
+            ++screen;
+            if (screen == 4) screen = 0;
+        }
+        
+        // Refresh display every t2 seconds
+        if (count_refresh_display == 25) // ~500ms
+        {
+            count_refresh_display = 0;
+            refresh_display = 1;
+        }
+    }
+    
+    // USART receive interrupt flag has been set
+    if (PIR1bits.RCIF)
+    {
+        if ((!endOfMessage) && (!newMessage))
+        {
+            if (PIR1bits.TXIF)   // check if the TXREG is empty
+            {
+                received[z] = ReceiveBuffer;
+                z++;
+                timerCount = 0;
+            }
+        }
+
+        if (newMessage) 
+        {
+            OpenTmr0();
+            if (PIR1bits.TXIF)   // check if the TXREG is empty
+            { 
+                received[z] = ReceiveBuffer;
+                z++;
+                newMessage = 0;
+                endOfMessage = 0;
+                messageLength = 0;
+                modbusMessage = 0;
+                timerCount = 0;
+                return;
+            }
+        }
+        PIR1bits.RCIF = 0;
+    }
+    
+    //TMR0 interrupt flag
+    if (INTCONbits.TMR0IF)    
+    { 
+        modbusDelay();  //Resets timer for 1.04ms
+        timerCount++;
+        if (timerCount > 4)
+        {
+            endOfMessage = 1;
+            newMessage = 1;
+            messageLength = z;
+            modbusMessage = 1;
+            for (z = (messageLength); z != 125; z++)    //Clear rest of message
+            {
+              received[z] = 0;
+            }
+            z = 0;
+            T0CONbits.TMR0ON = 0; //Close timer0
+            timerCount = 0;
+        }
+        INTCONbits.TMR0IF = 0;  // Clear flag
+    }
 }
 
 
@@ -173,13 +239,19 @@ void Set_Display_Message()
         sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
         sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
     }
+    else if (screen == MODBUS)
+    {         
+        strcpy(display.line0, "MODBUS:         ");
+        sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
+    }
 }
 
 void Min_Lv1_Incr()
 {
     screen = MIN_LEVEL;
-    Refresh_Screen();
-    TMR0 = 131;
+    Refresh_Screen();    
+    TMR1L = 0x2C; // LSB 
+    TMR1H = 0xCF; // HSB
     count_screen = -250;
 
     if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
@@ -190,7 +262,8 @@ void Min_Lv2_Incr()
 {
     screen = MIN_LEVEL;
     Refresh_Screen();
-    TMR0 = 131;
+    TMR1L = 0x2C; // LSB 
+    TMR1H = 0xCF; // HSB
     count_screen = -250;
 
     if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
@@ -236,6 +309,22 @@ void Read_Level()
     tank2.level = (adcTank2 / 10.23); // %
 }
 
+void Receive_Message()
+{
+    if (holdingReg[0] == 1) SetBit(&LATC, pump_relay);
+    else ClearBit(&LATC, pump_relay);
+    
+    operation = holdingReg[1];
+    tank1.min_level = holdingReg[2];
+    tank2.min_level = holdingReg[3];
+}
+
+void Write_Message()
+{
+    holdingReg[4] = tank1.level;
+    holdingReg[5] = tank2.level;
+}
+
 void Show_Display(lcd display)
 { 
     Lcd_Out(1, 0, display.line0);
@@ -249,7 +338,6 @@ void Refresh_Screen()
     refresh_display = 0;
 }
 
-
 void Initialize_Tanks()
 {
     // Tank 1
@@ -262,7 +350,6 @@ void Initialize_Tanks()
     tank2.max_level = 90;    
 }
 
-
 void Configure_External_Interrupt()
 {
     /*INTCON2bits.INTEDG0 = 0; // 0 = Interrupt on falling edge
@@ -271,11 +358,12 @@ void Configure_External_Interrupt()
 }
 
 void Configure_Timer_Interrupt()
-{   
-    INTCONbits.TMR0IE = 1;
-    INTCONbits.TMR0IF = 0;
-    T0CON = 0b11000101; // 8bit and 1:64 Prescale    
-    TMR0 = 131;
+{
+    PIE1bits.TMR1IE = 1;
+    PIR1bits.TMR1IF = 0;
+    TMR1L = 0x2C; // LSB 
+    TMR1H = 0xCF; // HSB
+    T1CON = 0b00100001; // timer, prescaler 1:4, internal clock;
 }
 
 void Configure_Registers()
@@ -283,18 +371,19 @@ void Configure_Registers()
     INTCON2bits.RBPU = 0; // 0 = PORTB pull-ups are enabled by individual port latch values 
     
     // Input or Output
-    //TRISA = 0x00;
+    TRISA = 0xff;
     TRISB = 0x3f;
     TRISC = 0x00;
     TRISD = 0x00;
     TRISE = 0x00;
     // Clear ports
-    //PORTA = 0; LATA = 0;
+    PORTA = 0; LATA = 0;
     PORTB = 0; LATB = 0;
     PORTC = 0; LATC = 0;
     PORTD = 0; LATD = 0;
     PORTE = 0; LATE = 0;    
     
+    PEIE = 1;
     ei();
     Configure_External_Interrupt();
     Configure_Timer_Interrupt();    

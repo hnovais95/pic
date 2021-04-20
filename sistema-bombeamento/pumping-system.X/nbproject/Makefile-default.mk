@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c regoperations.c debounce.c adc.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c regoperations.c debounce.c adc.c modbus.c system.c user.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/regoperations.p1 ${OBJECTDIR}/debounce.p1 ${OBJECTDIR}/adc.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/regoperations.p1.d ${OBJECTDIR}/debounce.p1.d ${OBJECTDIR}/adc.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/regoperations.p1 ${OBJECTDIR}/debounce.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/modbus.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/regoperations.p1.d ${OBJECTDIR}/debounce.p1.d ${OBJECTDIR}/adc.p1.d ${OBJECTDIR}/modbus.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/regoperations.p1 ${OBJECTDIR}/debounce.p1 ${OBJECTDIR}/adc.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/regoperations.p1 ${OBJECTDIR}/debounce.p1 ${OBJECTDIR}/adc.p1 ${OBJECTDIR}/modbus.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1
 
 # Source Files
-SOURCEFILES=main.c regoperations.c debounce.c adc.c
+SOURCEFILES=main.c regoperations.c debounce.c adc.c modbus.c system.c user.c
 
 
 
@@ -126,6 +126,30 @@ ${OBJECTDIR}/adc.p1: adc.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/adc.d ${OBJECTDIR}/adc.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/modbus.p1: modbus.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/modbus.p1.d 
+	@${RM} ${OBJECTDIR}/modbus.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/modbus.p1 modbus.c 
+	@-${MV} ${OBJECTDIR}/modbus.d ${OBJECTDIR}/modbus.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modbus.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/system.p1: system.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/system.p1.d 
+	@${RM} ${OBJECTDIR}/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
+	@-${MV} ${OBJECTDIR}/system.d ${OBJECTDIR}/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/user.p1.d 
+	@${RM} ${OBJECTDIR}/user.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
+	@-${MV} ${OBJECTDIR}/user.d ${OBJECTDIR}/user.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -158,6 +182,30 @@ ${OBJECTDIR}/adc.p1: adc.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/adc.p1 adc.c 
 	@-${MV} ${OBJECTDIR}/adc.d ${OBJECTDIR}/adc.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modbus.p1: modbus.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/modbus.p1.d 
+	@${RM} ${OBJECTDIR}/modbus.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/modbus.p1 modbus.c 
+	@-${MV} ${OBJECTDIR}/modbus.d ${OBJECTDIR}/modbus.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modbus.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/system.p1: system.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/system.p1.d 
+	@${RM} ${OBJECTDIR}/system.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/system.p1 system.c 
+	@-${MV} ${OBJECTDIR}/system.d ${OBJECTDIR}/system.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/user.p1: user.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/user.p1.d 
+	@${RM} ${OBJECTDIR}/user.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"C:/Program Files/Microchip/xc8/v2.32/include/plib" -I"C:/Program Files/Microchip/xc8/v2.32/pic/include" -I"C:/Program Files/Microchip/xc8/v2.32/pic" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/user.p1 user.c 
+	@-${MV} ${OBJECTDIR}/user.d ${OBJECTDIR}/user.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/user.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
