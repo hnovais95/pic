@@ -1,0 +1,82 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[; ;regoperations.h: 2: void SetBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 4: void ClearBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 6: void TougleBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 8: int CheckBit(unsigned port, unsigned pin);
+"3 regoperations.c
+[v _SetBit `(v ~T0 @X0 1 ef2`*ui`ui ]
+"4
+{
+[; ;regoperations.c: 3: void SetBit(unsigned *port, unsigned pin)
+[; ;regoperations.c: 4: {
+[e :U _SetBit ]
+"3
+[v _port `*ui ~T0 @X0 1 r1 ]
+[v _pin `ui ~T0 @X0 1 r2 ]
+"4
+[f ]
+[; ;regoperations.c: 5: (*port) |= (1UL << pin);
+"5
+[e =| *U _port -> << -> 1 `ul _pin `ui ]
+[; ;regoperations.c: 6: }
+"6
+[e :UE 1 ]
+}
+"8
+[v _ClearBit `(v ~T0 @X0 1 ef2`*ui`ui ]
+"9
+{
+[; ;regoperations.c: 8: void ClearBit(unsigned *port, unsigned pin)
+[; ;regoperations.c: 9: {
+[e :U _ClearBit ]
+"8
+[v _port `*ui ~T0 @X0 1 r1 ]
+[v _pin `ui ~T0 @X0 1 r2 ]
+"9
+[f ]
+[; ;regoperations.c: 10: (*port) &= ~(1UL << pin);
+"10
+[e =& *U _port -> ~ << -> 1 `ul _pin `ui ]
+[; ;regoperations.c: 11: }
+"11
+[e :UE 2 ]
+}
+"13
+[v _TougleBit `(v ~T0 @X0 1 ef2`*ui`ui ]
+"14
+{
+[; ;regoperations.c: 13: void TougleBit(unsigned *port, unsigned pin)
+[; ;regoperations.c: 14: {
+[e :U _TougleBit ]
+"13
+[v _port `*ui ~T0 @X0 1 r1 ]
+[v _pin `ui ~T0 @X0 1 r2 ]
+"14
+[f ]
+[; ;regoperations.c: 15: (*port) ^= (1UL << pin);
+"15
+[e =^ *U _port -> << -> 1 `ul _pin `ui ]
+[; ;regoperations.c: 16: }
+"16
+[e :UE 3 ]
+}
+"18
+[v _CheckBit `(i ~T0 @X0 1 ef2`ui`ui ]
+"19
+{
+[; ;regoperations.c: 18: int CheckBit(unsigned port, unsigned pin)
+[; ;regoperations.c: 19: {
+[e :U _CheckBit ]
+"18
+[v _port `ui ~T0 @X0 1 r1 ]
+[v _pin `ui ~T0 @X0 1 r2 ]
+"19
+[f ]
+[; ;regoperations.c: 20: return ((port >> pin) & 1U);
+"20
+[e ) -> & >> _port _pin -> 1 `ui `i ]
+[e $UE 4  ]
+[; ;regoperations.c: 21: }
+"21
+[e :UE 4 ]
+}

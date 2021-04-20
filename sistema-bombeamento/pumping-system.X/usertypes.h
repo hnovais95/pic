@@ -19,3 +19,9 @@ typedef struct
     float min_level;
     float max_level;
 } tank;
+
+typedef struct
+{
+    char line0 [16];
+    char line1 [16];
+} lcd;

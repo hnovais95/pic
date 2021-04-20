@@ -1,19 +1,81 @@
+/* ########################################################################
+
+   PICsim - PIC simulator http://sourceforge.net/projects/picsim/
+
+   ########################################################################
+
+   Copyright (c) : 2015  Luis Claudio Gambôa Lopes
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+   For e-mail suggestions :  lcgamboa@yahoo.com
+   ######################################################################## */
+
 #include <xc.h>
-#include "config.h"
 #include "adc.h"
 
-void ADC_Initialize()
+
+void adc_init(void)
 {
-  ADCON0 = 0b01000001; //ADC ON and Fosc/16 is selected
-  ADCON1 = 0b11000000; // Internal reference voltage is selected
+#if defined (_18F452) || defined(_16F877A)
+  ADCON1=0x02;
+  ADCON0=0x41; 
+#else
+  ADCON0=0x01;
+  ADCON1=0x0B;
+  ADCON2=0x01;
+#endif
+
+
 }
 
-unsigned int ADC_Read(unsigned char channel)
+unsigned int adc_amostra(unsigned char canal)
 {
-  ADCON0 &= 0x11000101; //Clearing the Channel Selection Bits
-  ADCON0 |= channel<<3; //Setting the required Bits
-  __delay_ms(2); //Acquisition time to charge hold capacitor
-  GO_nDONE = 1; //Initializes A/D Conversion
-  while(GO_nDONE); //Wait for A/D Conversion to complete
-  return ((ADRESH<<8)+ADRESL); //Returns Result
+
+
+#if defined(_18F4620) || defined(_18F4550)
+    switch(canal)
+    {
+      case 0: 
+        ADCON0=0x01;
+        break;
+      case 1: 
+        ADCON0=0x05;
+        break;
+      case 2: 
+        ADCON0=0x09;
+        break;
+    }
+#else   
+     switch(canal)
+    {
+      case 0:
+        ADCON0=0x01;
+        break;
+      case 1:
+        ADCON0=0x09;
+        break;
+      case 2:
+        ADCON0=0x11;
+        break;
+    }   
+#endif
+   
+
+    ADCON0bits.GO=1;
+    while(ADCON0bits.GO == 1);
+
+   return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
 }

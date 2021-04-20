@@ -1,0 +1,94 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[v F19 `(v ~T0 @X0 0 tf ]
+"8 regoperations.h
+[v _CheckBit `(i ~T0 @X0 0 ef2`ui`ui ]
+[; ;regoperations.h: 2: void SetBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 4: void ClearBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 6: void TougleBit(unsigned *port, unsigned pin);
+[; ;regoperations.h: 8: int CheckBit(unsigned port, unsigned pin);
+[; ;debounce.h: 5: void Debounce(unsigned port, unsigned pin, unsigned *bt_press, unsigned *filter, void (*ptr_f)(void));
+"3 debounce.c
+[v _Debounce `(v ~T0 @X0 1 ef5`ui`ui`*ui`*ui`*F19 ]
+"4
+{
+[; ;debounce.c: 3: void Debounce(unsigned port, unsigned pin, unsigned *bt_press, unsigned *filter, void (*ptr_f)(void))
+[; ;debounce.c: 4: {
+[e :U _Debounce ]
+"3
+[v _port `ui ~T0 @X0 1 r1 ]
+[v _pin `ui ~T0 @X0 1 r2 ]
+[v _bt_press `*ui ~T0 @X0 1 r3 ]
+[v _filter `*ui ~T0 @X0 1 r4 ]
+[v F26 `(v ~T0 @X0 0 tf ]
+[v _ptr_f `*F26 ~T0 @X0 1 r5 ]
+"4
+[f ]
+[; ;debounce.c: 5: if (!CheckBit(port, pin))
+"5
+[e $ ! ! != ( _CheckBit (2 , _port _pin -> 0 `i 2  ]
+[; ;debounce.c: 6: {
+"6
+{
+[; ;debounce.c: 8: if (!(*bt_press))
+"8
+[e $ ! ! != *U _bt_press -> -> 0 `i `ui 3  ]
+[; ;debounce.c: 9: {
+"9
+{
+[; ;debounce.c: 10: if (*filter > 0)
+"10
+[e $ ! > *U _filter -> -> 0 `i `ui 4  ]
+[; ;debounce.c: 11: {
+"11
+{
+[; ;debounce.c: 12: (*filter)--;
+"12
+[e -- *U _filter -> -> 1 `i `ui ]
+"13
+}
+[; ;debounce.c: 13: }
+[e $U 5  ]
+"14
+[e :U 4 ]
+[; ;debounce.c: 14: else
+[; ;debounce.c: 15: {
+"15
+{
+[; ;debounce.c: 16: *bt_press = 1;
+"16
+[e = *U _bt_press -> -> 1 `i `ui ]
+[; ;debounce.c: 17: ptr_f();
+"17
+[e ( *U _ptr_f ..  ]
+"18
+}
+[e :U 5 ]
+"19
+}
+[e :U 3 ]
+"20
+}
+[; ;debounce.c: 18: }
+[; ;debounce.c: 19: }
+[; ;debounce.c: 20: }
+[e $U 6  ]
+"21
+[e :U 2 ]
+[; ;debounce.c: 21: else
+[; ;debounce.c: 22: {
+"22
+{
+[; ;debounce.c: 23: *filter = 10;;
+"23
+[e = *U _filter -> -> 10 `i `ui ]
+[; ;debounce.c: 24: *bt_press = 0;
+"24
+[e = *U _bt_press -> -> 0 `i `ui ]
+"25
+}
+[e :U 6 ]
+[; ;debounce.c: 25: }
+[; ;debounce.c: 26: }
+"26
+[e :UE 1 ]
+}
