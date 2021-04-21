@@ -2898,9 +2898,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 67: case 1:
 "67
 [e :U 281 ]
-[; ;adc.c: 68: ADCON0=0x09;
+[; ;adc.c: 68: ADCON0=0x05;
 "68
-[e = _ADCON0 -> -> 9 `i `uc ]
+[e = _ADCON0 -> -> 5 `i `uc ]
 [; ;adc.c: 69: break;
 "69
 [e $U 278  ]

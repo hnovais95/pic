@@ -66,6 +66,10 @@ volatile screen_mode screen = CURRENT_LEVEL;
 volatile tank tank1, tank2;
 volatile lcd display;
 
+// Auxiliary variables
+int last_pump_status_received;
+int last_operation_mode_received;
+
 
 /*******************************************************************
 *   CONSTANTS
@@ -77,16 +81,17 @@ uint8 INCREMENT = 10;
 *   PROTOTYPES
 *******************************************************************/
 void interrupt isr(void);
-void Set_Display_Message();
+void TouglePump();
+void Automatic_Mode();
+void Manual_Mode();
 void Change_Mode();
 void Min_Lv1_Incr();
 void Min_Lv2_Incr();
-void Automatic_Mode();
-void Manual_Mode();
-void TouglePump();
 void Read_Level();
+void Sync_Registers();
 void Receive_Message();
-void Write_Message();
+void Set_Display_Message();
+void Show_Display(lcd display);
 void Refresh_Screen();
 void Initialize_Tanks();
 void Configure_External_Interrupt();
@@ -112,12 +117,14 @@ void main(void) {
     {
         CLRWDT();
         
+        last_pump_status_received = holdingReg[0];
+        last_operation_mode_received = holdingReg[1];
+        
         if (modbusMessage)
         {
             decodeIt();
             Receive_Message();
         }
-        Write_Message();
 
         Read_Level();
         
@@ -222,64 +229,9 @@ void interrupt isr(void)
 /*******************************************************************
 *   FUNCTIONS
 *******************************************************************/
-void Set_Display_Message()
-{
-    if (screen == CURRENT_LEVEL)
-    {
-        sprintf(display.line0, "CURRENT LV1: %d%%  ", (int)tank1.level);
-        sprintf(display.line1, "CURRENT LV2: %d%%  ", (int)tank2.level);
-    }
-    else if (screen == OPERATION_MODE)
-    {
-        strcpy(display.line0, "OPERATION MODE: ");
-        strcpy(display.line1, operation == AUTOMATIC ? "AUTOMATIC      " : "MANUAL         ");
-    }
-    else if (screen == MIN_LEVEL)
-    {
-        sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
-        sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
-    }
-    else if (screen == MODBUS)
-    {         
-        strcpy(display.line0, "MODBUS:         ");
-        sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
-    }
-}
-
-void Min_Lv1_Incr()
-{
-    screen = MIN_LEVEL;
-    Refresh_Screen();    
-    TMR1L = 0x2C; // LSB 
-    TMR1H = 0xCF; // HSB
-    count_screen = -250;
-
-    if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
-    else tank1.min_level = 0; // Increments from zero
-}
-
-void Min_Lv2_Incr()
-{
-    screen = MIN_LEVEL;
-    Refresh_Screen();
-    TMR1L = 0x2C; // LSB 
-    TMR1H = 0xCF; // HSB
-    count_screen = -250;
-
-    if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
-    else tank2.min_level = 0; // Increments from zero 
-}
-
 void Tougle_Pump()
 {
     TougleBit(&LATC, pump_relay);
-}
-
-void Change_Mode()
-{    
-    led_operation_mode = ~led_operation_mode;    
-    if (operation == AUTOMATIC) operation = MANUAL; else operation = AUTOMATIC;
-    if ((operation == MANUAL) && (CheckBit(PORTC, pump_relay) == 1)) ClearBit(&LATC, 0); // If switched to manual mode and pump is on, turn off the pump
 }
 
 void Automatic_Mode()
@@ -300,6 +252,43 @@ void Manual_Mode()
     Debounce(PORTB, bt_on_off_pump, &bt_on_off_pump_press, &filter_bt_on_off_pump, Tougle_Pump);
 }
 
+void Change_Mode()
+{    
+    led_operation_mode = ~led_operation_mode;    
+    if (operation == AUTOMATIC) operation = MANUAL; 
+    else operation = AUTOMATIC;
+    
+    holdingReg[1] = operation;
+}
+
+void Min_Lv1_Incr()
+{
+    screen = MIN_LEVEL;
+    Refresh_Screen();    
+    TMR1L = 0x2C; // LSB 
+    TMR1H = 0xCF; // HSB
+    count_screen = -250;
+
+    if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
+    else tank1.min_level = 0; // Increments from zero
+    
+    holdingReg[2] = tank1.min_level;
+}
+
+void Min_Lv2_Incr()
+{
+    screen = MIN_LEVEL;
+    Refresh_Screen();
+    TMR1L = 0x2C; // LSB 
+    TMR1H = 0xCF; // HSB
+    count_screen = -250;
+
+    if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
+    else tank2.min_level = 0; // Increments from zero
+    
+    holdingReg[3] = tank2.min_level;
+}
+
 void Read_Level()
 {
     int adcTank1 = adc_amostra(0);
@@ -307,22 +296,54 @@ void Read_Level()
     
     tank1.level = (adcTank1 / 10.23); // %
     tank2.level = (adcTank2 / 10.23); // %
+    
+    holdingReg[4] = tank1.level;
+    holdingReg[5] = tank2.level;
+}
+
+void Sync_Registers()
+{    
+    // Sync pump status
+    if ((last_pump_status_received == holdingReg[0]) && (holdingReg[0] != CheckBit(LATC, pump_relay)))
+        holdingReg[0] = CheckBit(LATC, pump_relay);
+    
+    // Sync operation mode
+    if ((last_operation_mode_received == holdingReg[1]) && (holdingReg[1] != operation))
+        holdingReg[1] = operation;
 }
 
 void Receive_Message()
 {
+    Sync_Registers();
     if (holdingReg[0] == 1) SetBit(&LATC, pump_relay);
     else ClearBit(&LATC, pump_relay);
-    
-    operation = holdingReg[1];
+    operation = holdingReg[1]; 
     tank1.min_level = holdingReg[2];
     tank2.min_level = holdingReg[3];
 }
 
-void Write_Message()
+void Set_Display_Message()
 {
-    holdingReg[4] = tank1.level;
-    holdingReg[5] = tank2.level;
+    if (screen == CURRENT_LEVEL)
+    {
+        sprintf(display.line0, "CURRENT LV1: %d%%  ", (int)tank1.level);
+        sprintf(display.line1, "CURRENT LV2: %d%%  ", (int)tank2.level);
+    }
+    else if (screen == OPERATION_MODE)
+    {
+        strcpy(display.line0, "OPERATION MODE: ");
+        strcpy(display.line1, operation == AUTOMATIC ? "AUTOMATIC       " : "MANUAL          ");
+    }
+    else if (screen == MIN_LEVEL)
+    {
+        sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
+        sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
+    }
+    else if (screen == MODBUS)
+    {         
+        strcpy(display.line0, "MODBUS:         ");
+        sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
+    }
 }
 
 void Show_Display(lcd display)
@@ -386,7 +407,5 @@ void Configure_Registers()
     PEIE = 1;
     ei();
     Configure_External_Interrupt();
-    Configure_Timer_Interrupt();    
-    
-    ADCON1 = 0b00001111; //configura todos os pinos AD como I/O digital
+    Configure_Timer_Interrupt();
 }

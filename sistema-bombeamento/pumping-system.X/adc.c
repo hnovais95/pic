@@ -65,7 +65,7 @@ unsigned int adc_amostra(unsigned char canal)
         ADCON0=0x01;
         break;
       case 1:
-        ADCON0=0x09;
+        ADCON0=0x05;    //ADCON0=0x09;
         break;
       case 2:
         ADCON0=0x11;

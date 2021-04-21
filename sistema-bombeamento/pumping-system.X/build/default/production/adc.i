@@ -4553,7 +4553,7 @@ case 0:
 ADCON0=0x01;
 break;
 case 1:
-ADCON0=0x09;
+ADCON0=0x05;
 break;
 case 2:
 ADCON0=0x11;

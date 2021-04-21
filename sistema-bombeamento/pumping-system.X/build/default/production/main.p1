@@ -94,11 +94,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [s S295 `uc -> 16 `i `uc -> 16 `i ]
 [n S295 . line0 line1 ]
 [p mainexit ]
-"94 main.c
+"99 main.c
 [v _Configure_Registers `(v ~T0 @X0 0 ef ]
 "27 adc.h
 [v _adc_init `(v ~T0 @X0 0 ef ]
-"91 main.c
+"96 main.c
 [v _Initialize_Tanks `(v ~T0 @X0 0 ef ]
 "25 system.h
 [v _OpnUSART `(v ~T0 @X0 0 ef ]
@@ -106,28 +106,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ConfigInterrupts `(v ~T0 @X0 0 ef ]
 "27 modbus.h
 [v _decodeIt `(v ~T0 @X0 0 ef ]
-"88 main.c
+"92 main.c
 [v _Receive_Message `(v ~T0 @X0 0 ef ]
-"89
-[v _Write_Message `(v ~T0 @X0 0 ef ]
-"87
+"90
 [v _Read_Level `(v ~T0 @X0 0 ef ]
 [v F2651 `(v ~T0 @X0 0 tf ]
 "5 debounce.h
 [v _Debounce `(v ~T0 @X0 0 ef5`ui`ui`*ui`*ui`*F2651 ]
 "271 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-"81 main.c
+"87 main.c
 [v _Change_Mode `(v ~T0 @X0 0 ef ]
-"84
-[v _Automatic_Mode `(v ~T0 @X0 0 ef ]
 "85
+[v _Automatic_Mode `(v ~T0 @X0 0 ef ]
+"86
 [v _Manual_Mode `(v ~T0 @X0 0 ef ]
-"82
+"88
 [v _Min_Lv1_Incr `(v ~T0 @X0 0 ef ]
-"83
+"89
 [v _Min_Lv2_Incr `(v ~T0 @X0 0 ef ]
-"90
+"95
 [v _Refresh_Screen `(v ~T0 @X0 0 ef ]
 "2677 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
 [s S91 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -175,15 +173,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S256 . . . ]
 "6191
 [v _T0CONbits `VS256 ~T0 @X0 0 e@4053 ]
-"194 C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"37 C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\string.h
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "6 regoperations.h
 [v _TougleBit `(v ~T0 @X0 0 ef2`*ui`ui ]
 "1201 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
 [v _LATC `Vuc ~T0 @X0 0 e@3979 ]
-"1319
+"2 regoperations.h
+[v _SetBit `(v ~T0 @X0 0 ef2`*ui`ui ]
+"4
+[v _ClearBit `(v ~T0 @X0 0 ef2`*ui`ui ]
+"1319 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
 [s S49 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S49 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
 "1329
@@ -194,16 +192,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S48 . . . ]
 "1340
 [v _LATDbits `VS48 ~T0 @X0 0 e@3980 ]
-"8 regoperations.h
-[v _CheckBit `(i ~T0 @X0 0 ef2`ui`ui ]
-"450 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
-[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
-"4 regoperations.h
-[v _ClearBit `(v ~T0 @X0 0 ef2`*ui`ui ]
-"2
-[v _SetBit `(v ~T0 @X0 0 ef2`*ui`ui ]
 "29 adc.h
 [v _adc_amostra `(ui ~T0 @X0 0 ef1`uc ]
+"8 regoperations.h
+[v _CheckBit `(i ~T0 @X0 0 ef2`ui`ui ]
+"194 C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"37 C:\Program Files\Microchip\xc8\v2.32\pic\include\c90\string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "2600 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
 [s S88 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S88 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE PSPIE ]
@@ -247,6 +243,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 "1089
 [v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"450
+[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
 "632
 [v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 "1313
@@ -257,8 +255,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATE `Vuc ~T0 @X0 0 e@3981 ]
 "7987
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
-"4690
-[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "7 configbits.h
 [p x OSC=HS ]
 "8
@@ -3744,866 +3740,896 @@ Version 3.2 HI-TECH Software Intermediate Code
 "67
 [v _display `VS295 ~T0 @X0 1 e ]
 [; ;main.c: 67: volatile lcd display;
-"73
+"70
+[v _last_pump_status_received `i ~T0 @X0 1 e ]
+[; ;main.c: 70: int last_pump_status_received;
+"71
+[v _last_operation_mode_received `i ~T0 @X0 1 e ]
+[; ;main.c: 71: int last_operation_mode_received;
+"77
 [v _INCREMENT `uc ~T0 @X0 1 e ]
 [i _INCREMENT
 -> -> 10 `i `uc
 ]
-[; ;main.c: 73: uint8 INCREMENT = 10;
-[; ;main.c: 79: void interrupt isr(void);
-[; ;main.c: 80: void Set_Display_Message();
-[; ;main.c: 81: void Change_Mode();
-[; ;main.c: 82: void Min_Lv1_Incr();
-[; ;main.c: 83: void Min_Lv2_Incr();
-[; ;main.c: 84: void Automatic_Mode();
-[; ;main.c: 85: void Manual_Mode();
-[; ;main.c: 86: void TouglePump();
-[; ;main.c: 87: void Read_Level();
-[; ;main.c: 88: void Receive_Message();
-[; ;main.c: 89: void Write_Message();
-[; ;main.c: 90: void Refresh_Screen();
-[; ;main.c: 91: void Initialize_Tanks();
-[; ;main.c: 92: void Configure_External_Interrupt();
-[; ;main.c: 93: void Configure_Timer_Interrupt();
-[; ;main.c: 94: void Configure_Registers();
+[; ;main.c: 77: uint8 INCREMENT = 10;
+[; ;main.c: 83: void interrupt isr(void);
+[; ;main.c: 84: void TouglePump();
+[; ;main.c: 85: void Automatic_Mode();
+[; ;main.c: 86: void Manual_Mode();
+[; ;main.c: 87: void Change_Mode();
+[; ;main.c: 88: void Min_Lv1_Incr();
+[; ;main.c: 89: void Min_Lv2_Incr();
+[; ;main.c: 90: void Read_Level();
+[; ;main.c: 91: void Sync_Registers();
+[; ;main.c: 92: void Receive_Message();
+[; ;main.c: 93: void Set_Display_Message();
+[; ;main.c: 94: void Show_Display(lcd display);
+[; ;main.c: 95: void Refresh_Screen();
+[; ;main.c: 96: void Initialize_Tanks();
+[; ;main.c: 97: void Configure_External_Interrupt();
+[; ;main.c: 98: void Configure_Timer_Interrupt();
+[; ;main.c: 99: void Configure_Registers();
 [v $root$_main `(v ~T0 @X0 0 e ]
-"100
+"105
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 100: void main(void) {
+[; ;main.c: 105: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 101: Configure_Registers();
-"101
+[; ;main.c: 106: Configure_Registers();
+"106
 [e ( _Configure_Registers ..  ]
-[; ;main.c: 102: adc_init();
-"102
+[; ;main.c: 107: adc_init();
+"107
 [e ( _adc_init ..  ]
-[; ;main.c: 103: Lcd_Init();
-"103
-[e ( _Lcd_Init ..  ]
-[; ;main.c: 104: Lcd_Cmd(12);
-"104
-[e ( _Lcd_Cmd (1 -> -> 12 `i `uc ]
-[; ;main.c: 105: Initialize_Tanks();
-"105
-[e ( _Initialize_Tanks ..  ]
-[; ;main.c: 108: OpnUSART();
+[; ;main.c: 108: Lcd_Init();
 "108
-[e ( _OpnUSART ..  ]
-[; ;main.c: 109: ConfigInterrupts();
+[e ( _Lcd_Init ..  ]
+[; ;main.c: 109: Lcd_Cmd(12);
 "109
-[e ( _ConfigInterrupts ..  ]
-[; ;main.c: 111: while(1)
-"111
-[e :U 300 ]
-[; ;main.c: 112: {
-"112
-{
-[; ;main.c: 113: asm(" clrwdt");
+[e ( _Lcd_Cmd (1 -> -> 12 `i `uc ]
+[; ;main.c: 110: Initialize_Tanks();
+"110
+[e ( _Initialize_Tanks ..  ]
+[; ;main.c: 113: OpnUSART();
 "113
-[; <"  clrwdt ;# ">
-[; ;main.c: 115: if (modbusMessage)
-"115
-[e $ ! != -> _modbusMessage `i -> -> -> 0 `i `Vuc `i 302  ]
-[; ;main.c: 116: {
+[e ( _OpnUSART ..  ]
+[; ;main.c: 114: ConfigInterrupts();
+"114
+[e ( _ConfigInterrupts ..  ]
+[; ;main.c: 116: while(1)
 "116
-{
-[; ;main.c: 117: decodeIt();
+[e :U 300 ]
+[; ;main.c: 117: {
 "117
-[e ( _decodeIt ..  ]
-[; ;main.c: 118: Receive_Message();
+{
+[; ;main.c: 118: asm(" clrwdt");
 "118
+[; <"  clrwdt ;# ">
+[; ;main.c: 120: last_pump_status_received = holdingReg[0];
+"120
+[e = _last_pump_status_received -> *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `i ]
+[; ;main.c: 121: last_operation_mode_received = holdingReg[1];
+"121
+[e = _last_operation_mode_received -> *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `i ]
+[; ;main.c: 123: if (modbusMessage)
+"123
+[e $ ! != -> _modbusMessage `i -> -> -> 0 `i `Vuc `i 302  ]
+[; ;main.c: 124: {
+"124
+{
+[; ;main.c: 125: decodeIt();
+"125
+[e ( _decodeIt ..  ]
+[; ;main.c: 126: Receive_Message();
+"126
 [e ( _Receive_Message ..  ]
-"119
+"127
 }
 [e :U 302 ]
-[; ;main.c: 119: }
-[; ;main.c: 120: Write_Message();
-"120
-[e ( _Write_Message ..  ]
-[; ;main.c: 122: Read_Level();
-"122
+[; ;main.c: 127: }
+[; ;main.c: 129: Read_Level();
+"129
 [e ( _Read_Level ..  ]
-[; ;main.c: 124: Debounce(PORTB, 0, &bt_operation_mode_press, &filter_bt_operation_mode, Change_Mode);
-"124
+[; ;main.c: 131: Debounce(PORTB, 0, &bt_operation_mode_press, &filter_bt_operation_mode, Change_Mode);
+"131
 [e ( _Debounce (4 , , , , -> _PORTB `ui -> -> 0 `i `ui -> &U _bt_operation_mode_press `*ui -> &U _filter_bt_operation_mode `*ui &U _Change_Mode ]
-[; ;main.c: 126: if (operation == AUTOMATIC) Automatic_Mode(); else Manual_Mode();
-"126
+[; ;main.c: 133: if (operation == AUTOMATIC) Automatic_Mode(); else Manual_Mode();
+"133
 [e $ ! == -> _operation `i -> . `E2618 0 `i 303  ]
 [e ( _Automatic_Mode ..  ]
 [e $U 304  ]
 [e :U 303 ]
 [e ( _Manual_Mode ..  ]
 [e :U 304 ]
-[; ;main.c: 128: Debounce(PORTB, 3, &bt_min_lv1_incr_press, &filter_bt_min_lv1_incr, Min_Lv1_Incr);
-"128
+[; ;main.c: 135: Debounce(PORTB, 3, &bt_min_lv1_incr_press, &filter_bt_min_lv1_incr, Min_Lv1_Incr);
+"135
 [e ( _Debounce (4 , , , , -> _PORTB `ui -> -> 3 `i `ui -> &U _bt_min_lv1_incr_press `*ui -> &U _filter_bt_min_lv1_incr `*ui &U _Min_Lv1_Incr ]
-[; ;main.c: 129: Debounce(PORTB, 4, &bt_min_lv2_incr_press, &filter_bt_min_lv2_incr, Min_Lv2_Incr);
-"129
+[; ;main.c: 136: Debounce(PORTB, 4, &bt_min_lv2_incr_press, &filter_bt_min_lv2_incr, Min_Lv2_Incr);
+"136
 [e ( _Debounce (4 , , , , -> _PORTB `ui -> -> 4 `i `ui -> &U _bt_min_lv2_incr_press `*ui -> &U _filter_bt_min_lv2_incr `*ui &U _Min_Lv2_Incr ]
-[; ;main.c: 131: if (refresh_display) Refresh_Screen();
-"131
+[; ;main.c: 138: if (refresh_display) Refresh_Screen();
+"138
 [e $ ! _refresh_display 305  ]
 [e ( _Refresh_Screen ..  ]
 [e :U 305 ]
-"132
+"139
 }
 [e :U 299 ]
-"111
+"116
 [e $U 300  ]
 [e :U 301 ]
-[; ;main.c: 132: }
-[; ;main.c: 133: return;
-"133
+[; ;main.c: 139: }
+[; ;main.c: 140: return;
+"140
 [e $UE 298  ]
-[; ;main.c: 134: }
-"134
+[; ;main.c: 141: }
+"141
 [e :UE 298 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-[v F2738 `(v ~T0 @X0 1 tf ]
-"140
-[v _isr `IF2738 ~T0 @X0 1 e ]
-"141
+[v F2740 `(v ~T0 @X0 1 tf ]
+"147
+[v _isr `IF2740 ~T0 @X0 1 e ]
+"148
 {
-[; ;main.c: 140: void interrupt isr(void)
-[; ;main.c: 141: {
+[; ;main.c: 147: void interrupt isr(void)
+[; ;main.c: 148: {
 [e :U _isr ]
 [f ]
-[; ;main.c: 143: if (PIR1bits.TMR1IF == 1)
-"143
+[; ;main.c: 150: if (PIR1bits.TMR1IF == 1)
+"150
 [e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 307  ]
-[; ;main.c: 144: {
-"144
+[; ;main.c: 151: {
+"151
 {
-[; ;main.c: 145: PIR1bits.TMR1IF = 0;
-"145
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 146: TMR1L = 0x2C;
-"146
-[e = _TMR1L -> -> 44 `i `uc ]
-[; ;main.c: 147: TMR1H = 0xCF;
-"147
-[e = _TMR1H -> -> 207 `i `uc ]
-[; ;main.c: 148: count_screen++;
-"148
-[e ++ _count_screen -> 1 `i ]
-[; ;main.c: 149: count_refresh_display++;
-"149
-[e ++ _count_refresh_display -> -> 1 `i `ui ]
-[; ;main.c: 152: if (count_screen == 100)
+[; ;main.c: 152: PIR1bits.TMR1IF = 0;
 "152
-[e $ ! == _count_screen -> 100 `i 308  ]
-[; ;main.c: 153: {
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 153: TMR1L = 0x2C;
 "153
-{
-[; ;main.c: 154: count_screen = 0;
+[e = _TMR1L -> -> 44 `i `uc ]
+[; ;main.c: 154: TMR1H = 0xCF;
 "154
-[e = _count_screen -> 0 `i ]
-[; ;main.c: 155: ++screen;
+[e = _TMR1H -> -> 207 `i `uc ]
+[; ;main.c: 155: count_screen++;
 "155
-[e =+ _screen -> -> 1 `i `VE2622 ]
-[; ;main.c: 156: if (screen == 4) screen = 0;
+[e ++ _count_screen -> 1 `i ]
+[; ;main.c: 156: count_refresh_display++;
 "156
+[e ++ _count_refresh_display -> -> 1 `i `ui ]
+[; ;main.c: 159: if (count_screen == 100)
+"159
+[e $ ! == _count_screen -> 100 `i 308  ]
+[; ;main.c: 160: {
+"160
+{
+[; ;main.c: 161: count_screen = 0;
+"161
+[e = _count_screen -> 0 `i ]
+[; ;main.c: 162: ++screen;
+"162
+[e =+ _screen -> -> 1 `i `VE2622 ]
+[; ;main.c: 163: if (screen == 4) screen = 0;
+"163
 [e $ ! == -> _screen `i -> 4 `i 309  ]
 [e = _screen -> -> 0 `i `VE2622 ]
 [e :U 309 ]
-"157
-}
-[e :U 308 ]
-[; ;main.c: 157: }
-[; ;main.c: 160: if (count_refresh_display == 25)
-"160
-[e $ ! == _count_refresh_display -> -> 25 `i `ui 310  ]
-[; ;main.c: 161: {
-"161
-{
-[; ;main.c: 162: count_refresh_display = 0;
-"162
-[e = _count_refresh_display -> -> 0 `i `ui ]
-[; ;main.c: 163: refresh_display = 1;
-"163
-[e = _refresh_display -> -> 1 `i `b ]
 "164
 }
+[e :U 308 ]
+[; ;main.c: 164: }
+[; ;main.c: 167: if (count_refresh_display == 25)
+"167
+[e $ ! == _count_refresh_display -> -> 25 `i `ui 310  ]
+[; ;main.c: 168: {
+"168
+{
+[; ;main.c: 169: count_refresh_display = 0;
+"169
+[e = _count_refresh_display -> -> 0 `i `ui ]
+[; ;main.c: 170: refresh_display = 1;
+"170
+[e = _refresh_display -> -> 1 `i `b ]
+"171
+}
 [e :U 310 ]
-"165
+"172
 }
 [e :U 307 ]
-[; ;main.c: 164: }
-[; ;main.c: 165: }
-[; ;main.c: 168: if (PIR1bits.RCIF)
-"168
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 311  ]
-[; ;main.c: 169: {
-"169
-{
-[; ;main.c: 170: if ((!endOfMessage) && (!newMessage))
-"170
-[e $ ! && ! != -> _endOfMessage `i -> -> -> 0 `i `Vuc `i ! != -> _newMessage `i -> -> -> 0 `i `Vuc `i 312  ]
-[; ;main.c: 171: {
-"171
-{
-[; ;main.c: 172: if (PIR1bits.TXIF)
-"172
-[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 313  ]
-[; ;main.c: 173: {
-"173
-{
-[; ;main.c: 174: received[z] = RCREG;
-"174
-[e = *U + &U _received * -> _z `ux -> -> # *U &U _received `ui `ux _RCREG ]
-[; ;main.c: 175: z++;
+[; ;main.c: 171: }
+[; ;main.c: 172: }
+[; ;main.c: 175: if (PIR1bits.RCIF)
 "175
-[e ++ _z -> -> 1 `i `uc ]
-[; ;main.c: 176: timerCount = 0;
+[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 311  ]
+[; ;main.c: 176: {
 "176
-[e = _timerCount -> -> 0 `i `uc ]
+{
+[; ;main.c: 177: if ((!endOfMessage) && (!newMessage))
 "177
+[e $ ! && ! != -> _endOfMessage `i -> -> -> 0 `i `Vuc `i ! != -> _newMessage `i -> -> -> 0 `i `Vuc `i 312  ]
+[; ;main.c: 178: {
+"178
+{
+[; ;main.c: 179: if (PIR1bits.TXIF)
+"179
+[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 313  ]
+[; ;main.c: 180: {
+"180
+{
+[; ;main.c: 181: received[z] = RCREG;
+"181
+[e = *U + &U _received * -> _z `ux -> -> # *U &U _received `ui `ux _RCREG ]
+[; ;main.c: 182: z++;
+"182
+[e ++ _z -> -> 1 `i `uc ]
+[; ;main.c: 183: timerCount = 0;
+"183
+[e = _timerCount -> -> 0 `i `uc ]
+"184
 }
 [e :U 313 ]
-"178
+"185
 }
 [e :U 312 ]
-[; ;main.c: 177: }
-[; ;main.c: 178: }
-[; ;main.c: 180: if (newMessage)
-"180
-[e $ ! != -> _newMessage `i -> -> -> 0 `i `Vuc `i 314  ]
-[; ;main.c: 181: {
-"181
-{
-[; ;main.c: 182: OpenTmr0();
-"182
-[e ( _OpenTmr0 ..  ]
-[; ;main.c: 183: if (PIR1bits.TXIF)
-"183
-[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 315  ]
-[; ;main.c: 184: {
-"184
-{
-[; ;main.c: 185: received[z] = RCREG;
-"185
-[e = *U + &U _received * -> _z `ux -> -> # *U &U _received `ui `ux _RCREG ]
-[; ;main.c: 186: z++;
-"186
-[e ++ _z -> -> 1 `i `uc ]
-[; ;main.c: 187: newMessage = 0;
+[; ;main.c: 184: }
+[; ;main.c: 185: }
+[; ;main.c: 187: if (newMessage)
 "187
-[e = _newMessage -> -> 0 `i `uc ]
-[; ;main.c: 188: endOfMessage = 0;
+[e $ ! != -> _newMessage `i -> -> -> 0 `i `Vuc `i 314  ]
+[; ;main.c: 188: {
 "188
-[e = _endOfMessage -> -> 0 `i `uc ]
-[; ;main.c: 189: messageLength = 0;
+{
+[; ;main.c: 189: OpenTmr0();
 "189
-[e = _messageLength -> -> 0 `i `uc ]
-[; ;main.c: 190: modbusMessage = 0;
+[e ( _OpenTmr0 ..  ]
+[; ;main.c: 190: if (PIR1bits.TXIF)
 "190
-[e = _modbusMessage -> -> 0 `i `uc ]
-[; ;main.c: 191: timerCount = 0;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 315  ]
+[; ;main.c: 191: {
 "191
-[e = _timerCount -> -> 0 `i `uc ]
-[; ;main.c: 192: return;
+{
+[; ;main.c: 192: received[z] = RCREG;
 "192
-[e $UE 306  ]
+[e = *U + &U _received * -> _z `ux -> -> # *U &U _received `ui `ux _RCREG ]
+[; ;main.c: 193: z++;
 "193
+[e ++ _z -> -> 1 `i `uc ]
+[; ;main.c: 194: newMessage = 0;
+"194
+[e = _newMessage -> -> 0 `i `uc ]
+[; ;main.c: 195: endOfMessage = 0;
+"195
+[e = _endOfMessage -> -> 0 `i `uc ]
+[; ;main.c: 196: messageLength = 0;
+"196
+[e = _messageLength -> -> 0 `i `uc ]
+[; ;main.c: 197: modbusMessage = 0;
+"197
+[e = _modbusMessage -> -> 0 `i `uc ]
+[; ;main.c: 198: timerCount = 0;
+"198
+[e = _timerCount -> -> 0 `i `uc ]
+[; ;main.c: 199: return;
+"199
+[e $UE 306  ]
+"200
 }
 [e :U 315 ]
-"194
+"201
 }
 [e :U 314 ]
-[; ;main.c: 193: }
-[; ;main.c: 194: }
-[; ;main.c: 195: PIR1bits.RCIF = 0;
-"195
+[; ;main.c: 200: }
+[; ;main.c: 201: }
+[; ;main.c: 202: PIR1bits.RCIF = 0;
+"202
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"196
+"203
 }
 [e :U 311 ]
-[; ;main.c: 196: }
-[; ;main.c: 199: if (INTCONbits.TMR0IF)
-"199
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 316  ]
-[; ;main.c: 200: {
-"200
-{
-[; ;main.c: 201: modbusDelay();
-"201
-[e ( _modbusDelay ..  ]
-[; ;main.c: 202: timerCount++;
-"202
-[e ++ _timerCount -> -> 1 `i `uc ]
-[; ;main.c: 203: if (timerCount > 4)
-"203
-[e $ ! > -> _timerCount `i -> 4 `i 317  ]
-[; ;main.c: 204: {
-"204
-{
-[; ;main.c: 205: endOfMessage = 1;
-"205
-[e = _endOfMessage -> -> 1 `i `uc ]
-[; ;main.c: 206: newMessage = 1;
+[; ;main.c: 203: }
+[; ;main.c: 206: if (INTCONbits.TMR0IF)
 "206
-[e = _newMessage -> -> 1 `i `uc ]
-[; ;main.c: 207: messageLength = z;
+[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 316  ]
+[; ;main.c: 207: {
 "207
-[e = _messageLength _z ]
-[; ;main.c: 208: modbusMessage = 1;
+{
+[; ;main.c: 208: modbusDelay();
 "208
-[e = _modbusMessage -> -> 1 `i `uc ]
-[; ;main.c: 209: for (z = (messageLength); z != 125; z++)
+[e ( _modbusDelay ..  ]
+[; ;main.c: 209: timerCount++;
 "209
+[e ++ _timerCount -> -> 1 `i `uc ]
+[; ;main.c: 210: if (timerCount > 4)
+"210
+[e $ ! > -> _timerCount `i -> 4 `i 317  ]
+[; ;main.c: 211: {
+"211
+{
+[; ;main.c: 212: endOfMessage = 1;
+"212
+[e = _endOfMessage -> -> 1 `i `uc ]
+[; ;main.c: 213: newMessage = 1;
+"213
+[e = _newMessage -> -> 1 `i `uc ]
+[; ;main.c: 214: messageLength = z;
+"214
+[e = _messageLength _z ]
+[; ;main.c: 215: modbusMessage = 1;
+"215
+[e = _modbusMessage -> -> 1 `i `uc ]
+[; ;main.c: 216: for (z = (messageLength); z != 125; z++)
+"216
 {
 [e = _z _messageLength ]
 [e $U 321  ]
-"210
+"217
 [e :U 318 ]
-[; ;main.c: 210: {
+[; ;main.c: 217: {
 {
-[; ;main.c: 211: received[z] = 0;
-"211
+[; ;main.c: 218: received[z] = 0;
+"218
 [e = *U + &U _received * -> _z `ux -> -> # *U &U _received `ui `ux -> -> 0 `i `uc ]
-"212
+"219
 }
-"209
+"216
 [e ++ _z -> -> 1 `i `uc ]
 [e :U 321 ]
 [e $ != -> _z `i -> 125 `i 318  ]
 [e :U 319 ]
-"212
+"219
 }
-[; ;main.c: 212: }
-[; ;main.c: 213: z = 0;
-"213
+[; ;main.c: 219: }
+[; ;main.c: 220: z = 0;
+"220
 [e = _z -> -> 0 `i `uc ]
-[; ;main.c: 214: T0CONbits.TMR0ON = 0;
-"214
+[; ;main.c: 221: T0CONbits.TMR0ON = 0;
+"221
 [e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 215: timerCount = 0;
-"215
+[; ;main.c: 222: timerCount = 0;
+"222
 [e = _timerCount -> -> 0 `i `uc ]
-"216
+"223
 }
 [e :U 317 ]
-[; ;main.c: 216: }
-[; ;main.c: 217: INTCONbits.TMR0IF = 0;
-"217
+[; ;main.c: 223: }
+[; ;main.c: 224: INTCONbits.TMR0IF = 0;
+"224
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"218
+"225
 }
 [e :U 316 ]
-[; ;main.c: 218: }
-[; ;main.c: 219: }
-"219
+[; ;main.c: 225: }
+[; ;main.c: 226: }
+"226
 [e :UE 306 ]
 }
-"225
-[v _Set_Display_Message `(v ~T0 @X0 1 ef ]
-"226
-{
-[; ;main.c: 225: void Set_Display_Message()
-[; ;main.c: 226: {
-[e :U _Set_Display_Message ]
-[f ]
-[; ;main.c: 227: if (screen == CURRENT_LEVEL)
-"227
-[e $ ! == -> _screen `i -> . `E2622 0 `i 323  ]
-[; ;main.c: 228: {
-"228
-{
-[; ;main.c: 229: sprintf(display.line0, "CURRENT LV1: %d%%  ", (int)tank1.level);
-"229
-[e ( _sprintf (1 , (. , -> &U . _display 0 `*uc :s 1C -> . _tank1 0 `i ]
-[; ;main.c: 230: sprintf(display.line1, "CURRENT LV2: %d%%  ", (int)tank2.level);
-"230
-[e ( _sprintf (1 , (. , -> &U . _display 1 `*uc :s 2C -> . _tank2 0 `i ]
-"231
-}
-[; ;main.c: 231: }
-[e $U 324  ]
 "232
-[e :U 323 ]
-[; ;main.c: 232: else if (screen == OPERATION_MODE)
-[e $ ! == -> _screen `i -> . `E2622 1 `i 325  ]
-[; ;main.c: 233: {
+[v _Tougle_Pump `(v ~T0 @X0 1 ef ]
 "233
 {
-[; ;main.c: 234: strcpy(display.line0, "OPERATION MODE: ");
-"234
-[e ( _strcpy (2 , -> &U . _display 0 `*uc :s 3C ]
-[; ;main.c: 235: strcpy(display.line1, operation == AUTOMATIC ? "AUTOMATIC      " : "MANUAL         ");
-"235
-[e ( _strcpy (2 , -> &U . _display 1 `*uc ? == -> _operation `i -> . `E2618 0 `i : :s 4C :s 5C ]
-"236
-}
-[; ;main.c: 236: }
-[e $U 326  ]
-"237
-[e :U 325 ]
-[; ;main.c: 237: else if (screen == MIN_LEVEL)
-[e $ ! == -> _screen `i -> . `E2622 2 `i 327  ]
-[; ;main.c: 238: {
-"238
-{
-[; ;main.c: 239: sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
-"239
-[e ( _sprintf (1 , (. , -> &U . _display 0 `*uc :s 6C -> . _tank1 1 `i ]
-[; ;main.c: 240: sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
-"240
-[e ( _sprintf (1 , (. , -> &U . _display 1 `*uc :s 7C -> . _tank2 1 `i ]
-"241
-}
-[; ;main.c: 241: }
-[e $U 328  ]
-"242
-[e :U 327 ]
-[; ;main.c: 242: else if (screen == MODBUS)
-[e $ ! == -> _screen `i -> . `E2622 3 `i 329  ]
-[; ;main.c: 243: {
-"243
-{
-[; ;main.c: 244: strcpy(display.line0, "MODBUS:         ");
-"244
-[e ( _strcpy (2 , -> &U . _display 0 `*uc :s 8C ]
-[; ;main.c: 245: sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
-"245
-[e ( _sprintf (1 , , , , (. , -> &U . _display 1 `*uc :s 9C *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 2 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 3 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux ]
-"246
-}
-[e :U 329 ]
-"247
-[e :U 328 ]
-[e :U 326 ]
-[e :U 324 ]
-[; ;main.c: 246: }
-[; ;main.c: 247: }
-[e :UE 322 ]
-}
-"249
-[v _Min_Lv1_Incr `(v ~T0 @X0 1 ef ]
-"250
-{
-[; ;main.c: 249: void Min_Lv1_Incr()
-[; ;main.c: 250: {
-[e :U _Min_Lv1_Incr ]
-[f ]
-[; ;main.c: 251: screen = MIN_LEVEL;
-"251
-[e = _screen . `E2622 2 ]
-[; ;main.c: 252: Refresh_Screen();
-"252
-[e ( _Refresh_Screen ..  ]
-[; ;main.c: 253: TMR1L = 0x2C;
-"253
-[e = _TMR1L -> -> 44 `i `uc ]
-[; ;main.c: 254: TMR1H = 0xCF;
-"254
-[e = _TMR1H -> -> 207 `i `uc ]
-[; ;main.c: 255: count_screen = -250;
-"255
-[e = _count_screen -U -> 250 `i ]
-[; ;main.c: 257: if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
-"257
-[e $ ! <= + . _tank1 1 -> _INCREMENT `f -> -> 100 `i `f 331  ]
-[e =+ . _tank1 1 -> _INCREMENT `f ]
-[e $U 332  ]
-"258
-[e :U 331 ]
-[; ;main.c: 258: else tank1.min_level = 0;
-[e = . _tank1 1 -> -> 0 `i `f ]
-[e :U 332 ]
-[; ;main.c: 259: }
-"259
-[e :UE 330 ]
-}
-"261
-[v _Min_Lv2_Incr `(v ~T0 @X0 1 ef ]
-"262
-{
-[; ;main.c: 261: void Min_Lv2_Incr()
-[; ;main.c: 262: {
-[e :U _Min_Lv2_Incr ]
-[f ]
-[; ;main.c: 263: screen = MIN_LEVEL;
-"263
-[e = _screen . `E2622 2 ]
-[; ;main.c: 264: Refresh_Screen();
-"264
-[e ( _Refresh_Screen ..  ]
-[; ;main.c: 265: TMR1L = 0x2C;
-"265
-[e = _TMR1L -> -> 44 `i `uc ]
-[; ;main.c: 266: TMR1H = 0xCF;
-"266
-[e = _TMR1H -> -> 207 `i `uc ]
-[; ;main.c: 267: count_screen = -250;
-"267
-[e = _count_screen -U -> 250 `i ]
-[; ;main.c: 269: if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
-"269
-[e $ ! <= + . _tank2 1 -> _INCREMENT `f -> -> 100 `i `f 334  ]
-[e =+ . _tank2 1 -> _INCREMENT `f ]
-[e $U 335  ]
-"270
-[e :U 334 ]
-[; ;main.c: 270: else tank2.min_level = 0;
-[e = . _tank2 1 -> -> 0 `i `f ]
-[e :U 335 ]
-[; ;main.c: 271: }
-"271
-[e :UE 333 ]
-}
-"273
-[v _Tougle_Pump `(v ~T0 @X0 1 ef ]
-"274
-{
-[; ;main.c: 273: void Tougle_Pump()
-[; ;main.c: 274: {
+[; ;main.c: 232: void Tougle_Pump()
+[; ;main.c: 233: {
 [e :U _Tougle_Pump ]
 [f ]
-[; ;main.c: 275: TougleBit(&LATC, 0);
-"275
+[; ;main.c: 234: TougleBit(&LATC, 0);
+"234
 [e ( _TougleBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-[; ;main.c: 276: }
-"276
-[e :UE 336 ]
+[; ;main.c: 235: }
+"235
+[e :UE 322 ]
 }
-"278
-[v _Change_Mode `(v ~T0 @X0 1 ef ]
-"279
-{
-[; ;main.c: 278: void Change_Mode()
-[; ;main.c: 279: {
-[e :U _Change_Mode ]
-[f ]
-[; ;main.c: 280: LATDbits.LATD0 = ~LATDbits.LATD0;
-"280
-[e = . . _LATDbits 0 0 -> ~ -> . . _LATDbits 0 0 `i `uc ]
-[; ;main.c: 281: if (operation == AUTOMATIC) operation = MANUAL; else operation = AUTOMATIC;
-"281
-[e $ ! == -> _operation `i -> . `E2618 0 `i 338  ]
-[e = _operation . `E2618 1 ]
-[e $U 339  ]
-[e :U 338 ]
-[e = _operation . `E2618 0 ]
-[e :U 339 ]
-[; ;main.c: 282: if ((operation == MANUAL) && (CheckBit(PORTC, 0) == 1)) ClearBit(&LATC, 0);
-"282
-[e $ ! && == -> _operation `i -> . `E2618 1 `i == ( _CheckBit (2 , -> _PORTC `ui -> -> 0 `i `ui -> 1 `i 340  ]
-[e ( _ClearBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-[e :U 340 ]
-[; ;main.c: 283: }
-"283
-[e :UE 337 ]
-}
-"285
+"237
 [v _Automatic_Mode `(v ~T0 @X0 1 ef ]
-"286
+"238
 {
-[; ;main.c: 285: void Automatic_Mode()
-[; ;main.c: 286: {
+[; ;main.c: 237: void Automatic_Mode()
+[; ;main.c: 238: {
 [e :U _Automatic_Mode ]
 [f ]
-"287
+"239
 [v _isFull `uc ~T0 @X0 1 a ]
-[; ;main.c: 287: bool isFull = tank2.level >= tank2.max_level ? 1 : 0;
+[; ;main.c: 239: bool isFull = tank2.level >= tank2.max_level ? 1 : 0;
 [e = _isFull -> ? >= . _tank2 0 . _tank2 2 : -> 1 `i -> 0 `i `uc ]
-[; ;main.c: 288: if ((tank1.level > tank1.min_level) && (tank2.level < tank2.min_level))
-"288
-[e $ ! && > . _tank1 0 . _tank1 1 < . _tank2 0 . _tank2 1 342  ]
-[; ;main.c: 289: {
-"289
+[; ;main.c: 240: if ((tank1.level > tank1.min_level) && (tank2.level < tank2.min_level))
+"240
+[e $ ! && > . _tank1 0 . _tank1 1 < . _tank2 0 . _tank2 1 324  ]
+[; ;main.c: 241: {
+"241
 {
-[; ;main.c: 290: SetBit(&LATC, 0);
-"290
+[; ;main.c: 242: SetBit(&LATC, 0);
+"242
 [e ( _SetBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-"291
+"243
 }
-[; ;main.c: 291: }
-[e $U 343  ]
-"292
-[e :U 342 ]
-[; ;main.c: 292: else if (tank1.level <= tank1.min_level || isFull)
-[e $ ! || <= . _tank1 0 . _tank1 1 != -> _isFull `i -> -> -> 0 `i `uc `i 344  ]
-[; ;main.c: 293: {
-"293
+[; ;main.c: 243: }
+[e $U 325  ]
+"244
+[e :U 324 ]
+[; ;main.c: 244: else if (tank1.level <= tank1.min_level || isFull)
+[e $ ! || <= . _tank1 0 . _tank1 1 != -> _isFull `i -> -> -> 0 `i `uc `i 326  ]
+[; ;main.c: 245: {
+"245
 {
-[; ;main.c: 294: ClearBit(&LATC, 0);
-"294
+[; ;main.c: 246: ClearBit(&LATC, 0);
+"246
 [e ( _ClearBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-"295
+"247
 }
-[e :U 344 ]
-"296
-[e :U 343 ]
-[; ;main.c: 295: }
-[; ;main.c: 296: }
-[e :UE 341 ]
+[e :U 326 ]
+"248
+[e :U 325 ]
+[; ;main.c: 247: }
+[; ;main.c: 248: }
+[e :UE 323 ]
 }
-"298
+"250
 [v _Manual_Mode `(v ~T0 @X0 1 ef ]
-"299
+"251
 {
-[; ;main.c: 298: void Manual_Mode()
-[; ;main.c: 299: {
+[; ;main.c: 250: void Manual_Mode()
+[; ;main.c: 251: {
 [e :U _Manual_Mode ]
 [f ]
-[; ;main.c: 300: Debounce(PORTB, 1, &bt_on_off_pump_press, &filter_bt_on_off_pump, Tougle_Pump);
-"300
+[; ;main.c: 252: Debounce(PORTB, 1, &bt_on_off_pump_press, &filter_bt_on_off_pump, Tougle_Pump);
+"252
 [e ( _Debounce (4 , , , , -> _PORTB `ui -> -> 1 `i `ui -> &U _bt_on_off_pump_press `*ui -> &U _filter_bt_on_off_pump `*ui &U _Tougle_Pump ]
-[; ;main.c: 301: }
-"301
-[e :UE 345 ]
+[; ;main.c: 253: }
+"253
+[e :UE 327 ]
 }
-"303
-[v _Read_Level `(v ~T0 @X0 1 ef ]
-"304
+"255
+[v _Change_Mode `(v ~T0 @X0 1 ef ]
+"256
 {
-[; ;main.c: 303: void Read_Level()
-[; ;main.c: 304: {
+[; ;main.c: 255: void Change_Mode()
+[; ;main.c: 256: {
+[e :U _Change_Mode ]
+[f ]
+[; ;main.c: 257: LATDbits.LATD0 = ~LATDbits.LATD0;
+"257
+[e = . . _LATDbits 0 0 -> ~ -> . . _LATDbits 0 0 `i `uc ]
+[; ;main.c: 258: if (operation == AUTOMATIC) operation = MANUAL;
+"258
+[e $ ! == -> _operation `i -> . `E2618 0 `i 329  ]
+[e = _operation . `E2618 1 ]
+[e $U 330  ]
+"259
+[e :U 329 ]
+[; ;main.c: 259: else operation = AUTOMATIC;
+[e = _operation . `E2618 0 ]
+[e :U 330 ]
+[; ;main.c: 261: holdingReg[1] = operation;
+"261
+[e = *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> _operation `ui ]
+[; ;main.c: 262: }
+"262
+[e :UE 328 ]
+}
+"264
+[v _Min_Lv1_Incr `(v ~T0 @X0 1 ef ]
+"265
+{
+[; ;main.c: 264: void Min_Lv1_Incr()
+[; ;main.c: 265: {
+[e :U _Min_Lv1_Incr ]
+[f ]
+[; ;main.c: 266: screen = MIN_LEVEL;
+"266
+[e = _screen . `E2622 2 ]
+[; ;main.c: 267: Refresh_Screen();
+"267
+[e ( _Refresh_Screen ..  ]
+[; ;main.c: 268: TMR1L = 0x2C;
+"268
+[e = _TMR1L -> -> 44 `i `uc ]
+[; ;main.c: 269: TMR1H = 0xCF;
+"269
+[e = _TMR1H -> -> 207 `i `uc ]
+[; ;main.c: 270: count_screen = -250;
+"270
+[e = _count_screen -U -> 250 `i ]
+[; ;main.c: 272: if ((tank1.min_level + INCREMENT) <= 100) tank1.min_level += INCREMENT;
+"272
+[e $ ! <= + . _tank1 1 -> _INCREMENT `f -> -> 100 `i `f 332  ]
+[e =+ . _tank1 1 -> _INCREMENT `f ]
+[e $U 333  ]
+"273
+[e :U 332 ]
+[; ;main.c: 273: else tank1.min_level = 0;
+[e = . _tank1 1 -> -> 0 `i `f ]
+[e :U 333 ]
+[; ;main.c: 275: holdingReg[2] = tank1.min_level;
+"275
+[e = *U + &U _holdingReg * -> -> -> 2 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank1 1 `ui ]
+[; ;main.c: 276: }
+"276
+[e :UE 331 ]
+}
+"278
+[v _Min_Lv2_Incr `(v ~T0 @X0 1 ef ]
+"279
+{
+[; ;main.c: 278: void Min_Lv2_Incr()
+[; ;main.c: 279: {
+[e :U _Min_Lv2_Incr ]
+[f ]
+[; ;main.c: 280: screen = MIN_LEVEL;
+"280
+[e = _screen . `E2622 2 ]
+[; ;main.c: 281: Refresh_Screen();
+"281
+[e ( _Refresh_Screen ..  ]
+[; ;main.c: 282: TMR1L = 0x2C;
+"282
+[e = _TMR1L -> -> 44 `i `uc ]
+[; ;main.c: 283: TMR1H = 0xCF;
+"283
+[e = _TMR1H -> -> 207 `i `uc ]
+[; ;main.c: 284: count_screen = -250;
+"284
+[e = _count_screen -U -> 250 `i ]
+[; ;main.c: 286: if ((tank2.min_level + INCREMENT) <= 100) tank2.min_level += INCREMENT;
+"286
+[e $ ! <= + . _tank2 1 -> _INCREMENT `f -> -> 100 `i `f 335  ]
+[e =+ . _tank2 1 -> _INCREMENT `f ]
+[e $U 336  ]
+"287
+[e :U 335 ]
+[; ;main.c: 287: else tank2.min_level = 0;
+[e = . _tank2 1 -> -> 0 `i `f ]
+[e :U 336 ]
+[; ;main.c: 289: holdingReg[3] = tank2.min_level;
+"289
+[e = *U + &U _holdingReg * -> -> -> 3 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank2 1 `ui ]
+[; ;main.c: 290: }
+"290
+[e :UE 334 ]
+}
+"292
+[v _Read_Level `(v ~T0 @X0 1 ef ]
+"293
+{
+[; ;main.c: 292: void Read_Level()
+[; ;main.c: 293: {
 [e :U _Read_Level ]
 [f ]
-"305
+"294
 [v _adcTank1 `i ~T0 @X0 1 a ]
-[; ;main.c: 305: int adcTank1 = adc_amostra(0);
+[; ;main.c: 294: int adcTank1 = adc_amostra(0);
 [e = _adcTank1 -> ( _adc_amostra (1 -> -> 0 `i `uc `i ]
-"306
+"295
 [v _adcTank2 `i ~T0 @X0 1 a ]
-[; ;main.c: 306: int adcTank2 = adc_amostra(1);
+[; ;main.c: 295: int adcTank2 = adc_amostra(1);
 [e = _adcTank2 -> ( _adc_amostra (1 -> -> 1 `i `uc `i ]
-[; ;main.c: 308: tank1.level = (adcTank1 / 10.23);
-"308
+[; ;main.c: 297: tank1.level = (adcTank1 / 10.23);
+"297
 [e = . _tank1 0 -> / -> _adcTank1 `d .10.23 `f ]
-[; ;main.c: 309: tank2.level = (adcTank2 / 10.23);
-"309
+[; ;main.c: 298: tank2.level = (adcTank2 / 10.23);
+"298
 [e = . _tank2 0 -> / -> _adcTank2 `d .10.23 `f ]
-[; ;main.c: 310: }
-"310
-[e :UE 346 ]
+[; ;main.c: 300: holdingReg[4] = tank1.level;
+"300
+[e = *U + &U _holdingReg * -> -> -> 4 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank1 0 `ui ]
+[; ;main.c: 301: holdingReg[5] = tank2.level;
+"301
+[e = *U + &U _holdingReg * -> -> -> 5 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank2 0 `ui ]
+[; ;main.c: 302: }
+"302
+[e :UE 337 ]
 }
-"312
-[v _Receive_Message `(v ~T0 @X0 1 ef ]
-"313
+"304
+[v _Sync_Registers `(v ~T0 @X0 1 ef ]
+"305
 {
-[; ;main.c: 312: void Receive_Message()
-[; ;main.c: 313: {
+[; ;main.c: 304: void Sync_Registers()
+[; ;main.c: 305: {
+[e :U _Sync_Registers ]
+[f ]
+[; ;main.c: 307: if ((last_pump_status_received == holdingReg[0]) && (holdingReg[0] != CheckBit(LATC, 0)))
+"307
+[e $ ! && == -> _last_pump_status_received `ui *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux != *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> ( _CheckBit (2 , -> _LATC `ui -> -> 0 `i `ui `ui 339  ]
+[; ;main.c: 308: holdingReg[0] = CheckBit(LATC, 0);
+"308
+[e = *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> ( _CheckBit (2 , -> _LATC `ui -> -> 0 `i `ui `ui ]
+[e :U 339 ]
+[; ;main.c: 311: if ((last_operation_mode_received == holdingReg[1]) && (holdingReg[1] != operation))
+"311
+[e $ ! && == -> _last_operation_mode_received `ui *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux != *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> _operation `ui 340  ]
+[; ;main.c: 312: holdingReg[1] = operation;
+"312
+[e = *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> _operation `ui ]
+[e :U 340 ]
+[; ;main.c: 313: }
+"313
+[e :UE 338 ]
+}
+"315
+[v _Receive_Message `(v ~T0 @X0 1 ef ]
+"316
+{
+[; ;main.c: 315: void Receive_Message()
+[; ;main.c: 316: {
 [e :U _Receive_Message ]
 [f ]
-[; ;main.c: 314: if (holdingReg[0] == 1) SetBit(&LATC, 0);
-"314
-[e $ ! == *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> -> 1 `i `ui 348  ]
-[e ( _SetBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-[e $U 349  ]
-"315
-[e :U 348 ]
-[; ;main.c: 315: else ClearBit(&LATC, 0);
-[e ( _ClearBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
-[e :U 349 ]
-[; ;main.c: 317: operation = holdingReg[1];
+[; ;main.c: 317: Sync_Registers();
 "317
-[e = _operation -> *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `VE2618 ]
-[; ;main.c: 318: tank1.min_level = holdingReg[2];
+[e ( _Sync_Registers ..  ]
+[; ;main.c: 318: if (holdingReg[0] == 1) SetBit(&LATC, 0);
 "318
-[e = . _tank1 1 -> *U + &U _holdingReg * -> -> -> 2 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `f ]
-[; ;main.c: 319: tank2.min_level = holdingReg[3];
+[e $ ! == *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> -> 1 `i `ui 342  ]
+[e ( _SetBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
+[e $U 343  ]
 "319
-[e = . _tank2 1 -> *U + &U _holdingReg * -> -> -> 3 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `f ]
-[; ;main.c: 320: }
+[e :U 342 ]
+[; ;main.c: 319: else ClearBit(&LATC, 0);
+[e ( _ClearBit (2 , -> &U _LATC `*ui -> -> 0 `i `ui ]
+[e :U 343 ]
+[; ;main.c: 320: operation = holdingReg[1];
 "320
-[e :UE 347 ]
-}
+[e = _operation -> *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `VE2618 ]
+[; ;main.c: 321: tank1.min_level = holdingReg[2];
+"321
+[e = . _tank1 1 -> *U + &U _holdingReg * -> -> -> 2 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `f ]
+[; ;main.c: 322: tank2.min_level = holdingReg[3];
 "322
-[v _Write_Message `(v ~T0 @X0 1 ef ]
+[e = . _tank2 1 -> *U + &U _holdingReg * -> -> -> 3 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux `f ]
+[; ;main.c: 323: }
 "323
-{
-[; ;main.c: 322: void Write_Message()
-[; ;main.c: 323: {
-[e :U _Write_Message ]
-[f ]
-[; ;main.c: 324: holdingReg[4] = tank1.level;
-"324
-[e = *U + &U _holdingReg * -> -> -> 4 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank1 0 `ui ]
-[; ;main.c: 325: holdingReg[5] = tank2.level;
-"325
-[e = *U + &U _holdingReg * -> -> -> 5 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux -> . _tank2 0 `ui ]
-[; ;main.c: 326: }
-"326
-[e :UE 350 ]
+[e :UE 341 ]
 }
-"328
-[v _Show_Display `(v ~T0 @X0 1 ef1`S295 ]
-"329
+"325
+[v _Set_Display_Message `(v ~T0 @X0 1 ef ]
+"326
 {
-[; ;main.c: 328: void Show_Display(lcd display)
-[; ;main.c: 329: {
+[; ;main.c: 325: void Set_Display_Message()
+[; ;main.c: 326: {
+[e :U _Set_Display_Message ]
+[f ]
+[; ;main.c: 327: if (screen == CURRENT_LEVEL)
+"327
+[e $ ! == -> _screen `i -> . `E2622 0 `i 345  ]
+[; ;main.c: 328: {
+"328
+{
+[; ;main.c: 329: sprintf(display.line0, "CURRENT LV1: %d%%  ", (int)tank1.level);
+"329
+[e ( _sprintf (1 , (. , -> &U . _display 0 `*uc :s 1C -> . _tank1 0 `i ]
+[; ;main.c: 330: sprintf(display.line1, "CURRENT LV2: %d%%  ", (int)tank2.level);
+"330
+[e ( _sprintf (1 , (. , -> &U . _display 1 `*uc :s 2C -> . _tank2 0 `i ]
+"331
+}
+[; ;main.c: 331: }
+[e $U 346  ]
+"332
+[e :U 345 ]
+[; ;main.c: 332: else if (screen == OPERATION_MODE)
+[e $ ! == -> _screen `i -> . `E2622 1 `i 347  ]
+[; ;main.c: 333: {
+"333
+{
+[; ;main.c: 334: strcpy(display.line0, "OPERATION MODE: ");
+"334
+[e ( _strcpy (2 , -> &U . _display 0 `*uc :s 3C ]
+[; ;main.c: 335: strcpy(display.line1, operation == AUTOMATIC ? "AUTOMATIC       " : "MANUAL          ");
+"335
+[e ( _strcpy (2 , -> &U . _display 1 `*uc ? == -> _operation `i -> . `E2618 0 `i : :s 4C :s 5C ]
+"336
+}
+[; ;main.c: 336: }
+[e $U 348  ]
+"337
+[e :U 347 ]
+[; ;main.c: 337: else if (screen == MIN_LEVEL)
+[e $ ! == -> _screen `i -> . `E2622 2 `i 349  ]
+[; ;main.c: 338: {
+"338
+{
+[; ;main.c: 339: sprintf(display.line0, "LV_MIN_1: %d%%   ", (int)tank1.min_level);
+"339
+[e ( _sprintf (1 , (. , -> &U . _display 0 `*uc :s 6C -> . _tank1 1 `i ]
+[; ;main.c: 340: sprintf(display.line1, "LV_MIN_2: %d%%   ", (int)tank2.min_level);
+"340
+[e ( _sprintf (1 , (. , -> &U . _display 1 `*uc :s 7C -> . _tank2 1 `i ]
+"341
+}
+[; ;main.c: 341: }
+[e $U 350  ]
+"342
+[e :U 349 ]
+[; ;main.c: 342: else if (screen == MODBUS)
+[e $ ! == -> _screen `i -> . `E2622 3 `i 351  ]
+[; ;main.c: 343: {
+"343
+{
+[; ;main.c: 344: strcpy(display.line0, "MODBUS:         ");
+"344
+[e ( _strcpy (2 , -> &U . _display 0 `*uc :s 8C ]
+[; ;main.c: 345: sprintf(display.line1, "%02X %02X %02X %02X     ", holdingReg[0], holdingReg[1], holdingReg[2], holdingReg[3]);
+"345
+[e ( _sprintf (1 , , , , (. , -> &U . _display 1 `*uc :s 9C *U + &U _holdingReg * -> -> -> 0 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 1 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 2 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux *U + &U _holdingReg * -> -> -> 3 `i `ui `ux -> -> # *U &U _holdingReg `ui `ux ]
+"346
+}
+[e :U 351 ]
+"347
+[e :U 350 ]
+[e :U 348 ]
+[e :U 346 ]
+[; ;main.c: 346: }
+[; ;main.c: 347: }
+[e :UE 344 ]
+}
+"349
+[v _Show_Display `(v ~T0 @X0 1 ef1`S295 ]
+"350
+{
+[; ;main.c: 349: void Show_Display(lcd display)
+[; ;main.c: 350: {
 [e :U _Show_Display ]
 [v _display `S295 ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 330: Lcd_Out(1, 0, display.line0);
-"330
+[; ;main.c: 351: Lcd_Out(1, 0, display.line0);
+"351
 [e ( _Lcd_Out (3 , , -> -> 1 `i `uc -> -> 0 `i `uc -> &U . _display 0 `*Cuc ]
-[; ;main.c: 331: Lcd_Out(2, 0, display.line1);
-"331
+[; ;main.c: 352: Lcd_Out(2, 0, display.line1);
+"352
 [e ( _Lcd_Out (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U . _display 1 `*Cuc ]
-[; ;main.c: 332: }
-"332
-[e :UE 351 ]
-}
-"334
-[v _Refresh_Screen `(v ~T0 @X0 1 ef ]
-"335
-{
-[; ;main.c: 334: void Refresh_Screen()
-[; ;main.c: 335: {
-[e :U _Refresh_Screen ]
-[f ]
-[; ;main.c: 336: Set_Display_Message();
-"336
-[e ( _Set_Display_Message ..  ]
-[; ;main.c: 337: Show_Display(display);
-"337
-[e ( _Show_Display (1 _display ]
-[; ;main.c: 338: refresh_display = 0;
-"338
-[e = _refresh_display -> -> 0 `i `b ]
-[; ;main.c: 339: }
-"339
+[; ;main.c: 353: }
+"353
 [e :UE 352 ]
 }
-"341
-[v _Initialize_Tanks `(v ~T0 @X0 1 ef ]
-"342
+"355
+[v _Refresh_Screen `(v ~T0 @X0 1 ef ]
+"356
 {
-[; ;main.c: 341: void Initialize_Tanks()
-[; ;main.c: 342: {
-[e :U _Initialize_Tanks ]
+[; ;main.c: 355: void Refresh_Screen()
+[; ;main.c: 356: {
+[e :U _Refresh_Screen ]
 [f ]
-[; ;main.c: 344: tank1.level = 0;
-"344
-[e = . _tank1 0 -> -> 0 `i `f ]
-[; ;main.c: 345: tank1.min_level = 0;
-"345
-[e = . _tank1 1 -> -> 0 `i `f ]
-[; ;main.c: 346: tank1.max_level = 100;
-"346
-[e = . _tank1 2 -> -> 100 `i `f ]
-[; ;main.c: 348: tank2.level = 0;
-"348
-[e = . _tank2 0 -> -> 0 `i `f ]
-[; ;main.c: 349: tank2.min_level = 0;
-"349
-[e = . _tank2 1 -> -> 0 `i `f ]
-[; ;main.c: 350: tank2.max_level = 90;
-"350
-[e = . _tank2 2 -> -> 90 `i `f ]
-[; ;main.c: 351: }
-"351
+[; ;main.c: 357: Set_Display_Message();
+"357
+[e ( _Set_Display_Message ..  ]
+[; ;main.c: 358: Show_Display(display);
+"358
+[e ( _Show_Display (1 _display ]
+[; ;main.c: 359: refresh_display = 0;
+"359
+[e = _refresh_display -> -> 0 `i `b ]
+[; ;main.c: 360: }
+"360
 [e :UE 353 ]
 }
-"353
-[v _Configure_External_Interrupt `(v ~T0 @X0 1 ef ]
-"354
+"362
+[v _Initialize_Tanks `(v ~T0 @X0 1 ef ]
+"363
 {
-[; ;main.c: 353: void Configure_External_Interrupt()
-[; ;main.c: 354: {
-[e :U _Configure_External_Interrupt ]
+[; ;main.c: 362: void Initialize_Tanks()
+[; ;main.c: 363: {
+[e :U _Initialize_Tanks ]
 [f ]
-[; ;main.c: 358: }
-"358
+[; ;main.c: 365: tank1.level = 0;
+"365
+[e = . _tank1 0 -> -> 0 `i `f ]
+[; ;main.c: 366: tank1.min_level = 0;
+"366
+[e = . _tank1 1 -> -> 0 `i `f ]
+[; ;main.c: 367: tank1.max_level = 100;
+"367
+[e = . _tank1 2 -> -> 100 `i `f ]
+[; ;main.c: 369: tank2.level = 0;
+"369
+[e = . _tank2 0 -> -> 0 `i `f ]
+[; ;main.c: 370: tank2.min_level = 0;
+"370
+[e = . _tank2 1 -> -> 0 `i `f ]
+[; ;main.c: 371: tank2.max_level = 90;
+"371
+[e = . _tank2 2 -> -> 90 `i `f ]
+[; ;main.c: 372: }
+"372
 [e :UE 354 ]
 }
-"360
-[v _Configure_Timer_Interrupt `(v ~T0 @X0 1 ef ]
-"361
+"374
+[v _Configure_External_Interrupt `(v ~T0 @X0 1 ef ]
+"375
 {
-[; ;main.c: 360: void Configure_Timer_Interrupt()
-[; ;main.c: 361: {
-[e :U _Configure_Timer_Interrupt ]
+[; ;main.c: 374: void Configure_External_Interrupt()
+[; ;main.c: 375: {
+[e :U _Configure_External_Interrupt ]
 [f ]
-[; ;main.c: 362: PIE1bits.TMR1IE = 1;
-"362
-[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 363: PIR1bits.TMR1IF = 0;
-"363
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 364: TMR1L = 0x2C;
-"364
-[e = _TMR1L -> -> 44 `i `uc ]
-[; ;main.c: 365: TMR1H = 0xCF;
-"365
-[e = _TMR1H -> -> 207 `i `uc ]
-[; ;main.c: 366: T1CON = 0b00100001;
-"366
-[e = _T1CON -> -> 33 `i `uc ]
-[; ;main.c: 367: }
-"367
+[; ;main.c: 379: }
+"379
 [e :UE 355 ]
 }
-"369
-[v _Configure_Registers `(v ~T0 @X0 1 ef ]
-"370
+"381
+[v _Configure_Timer_Interrupt `(v ~T0 @X0 1 ef ]
+"382
 {
-[; ;main.c: 369: void Configure_Registers()
-[; ;main.c: 370: {
+[; ;main.c: 381: void Configure_Timer_Interrupt()
+[; ;main.c: 382: {
+[e :U _Configure_Timer_Interrupt ]
+[f ]
+[; ;main.c: 383: PIE1bits.TMR1IE = 1;
+"383
+[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 384: PIR1bits.TMR1IF = 0;
+"384
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 385: TMR1L = 0x2C;
+"385
+[e = _TMR1L -> -> 44 `i `uc ]
+[; ;main.c: 386: TMR1H = 0xCF;
+"386
+[e = _TMR1H -> -> 207 `i `uc ]
+[; ;main.c: 387: T1CON = 0b00100001;
+"387
+[e = _T1CON -> -> 33 `i `uc ]
+[; ;main.c: 388: }
+"388
+[e :UE 356 ]
+}
+"390
+[v _Configure_Registers `(v ~T0 @X0 1 ef ]
+"391
+{
+[; ;main.c: 390: void Configure_Registers()
+[; ;main.c: 391: {
 [e :U _Configure_Registers ]
 [f ]
-[; ;main.c: 371: INTCON2bits.RBPU = 0;
-"371
+[; ;main.c: 392: INTCON2bits.RBPU = 0;
+"392
 [e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 374: TRISA = 0xff;
-"374
+[; ;main.c: 395: TRISA = 0xff;
+"395
 [e = _TRISA -> -> 255 `i `uc ]
-[; ;main.c: 375: TRISB = 0x3f;
-"375
+[; ;main.c: 396: TRISB = 0x3f;
+"396
 [e = _TRISB -> -> 63 `i `uc ]
-[; ;main.c: 376: TRISC = 0x00;
-"376
+[; ;main.c: 397: TRISC = 0x00;
+"397
 [e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 377: TRISD = 0x00;
-"377
+[; ;main.c: 398: TRISD = 0x00;
+"398
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 378: TRISE = 0x00;
-"378
+[; ;main.c: 399: TRISE = 0x00;
+"399
 [e = _TRISE -> -> 0 `i `uc ]
-[; ;main.c: 380: PORTA = 0; LATA = 0;
-"380
+[; ;main.c: 401: PORTA = 0; LATA = 0;
+"401
 [e = _PORTA -> -> 0 `i `uc ]
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 381: PORTB = 0; LATB = 0;
-"381
+[; ;main.c: 402: PORTB = 0; LATB = 0;
+"402
 [e = _PORTB -> -> 0 `i `uc ]
 [e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 382: PORTC = 0; LATC = 0;
-"382
+[; ;main.c: 403: PORTC = 0; LATC = 0;
+"403
 [e = _PORTC -> -> 0 `i `uc ]
 [e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 383: PORTD = 0; LATD = 0;
-"383
+[; ;main.c: 404: PORTD = 0; LATD = 0;
+"404
 [e = _PORTD -> -> 0 `i `uc ]
 [e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 384: PORTE = 0; LATE = 0;
-"384
+[; ;main.c: 405: PORTE = 0; LATE = 0;
+"405
 [e = _PORTE -> -> 0 `i `uc ]
 [e = _LATE -> -> 0 `i `uc ]
-[; ;main.c: 386: PEIE = 1;
-"386
+[; ;main.c: 407: PEIE = 1;
+"407
 [e = _PEIE -> -> 1 `i `b ]
-[; ;main.c: 387: (INTCONbits.GIE = 1);
-"387
+[; ;main.c: 408: (INTCONbits.GIE = 1);
+"408
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 388: Configure_External_Interrupt();
-"388
+[; ;main.c: 409: Configure_External_Interrupt();
+"409
 [e ( _Configure_External_Interrupt ..  ]
-[; ;main.c: 389: Configure_Timer_Interrupt();
-"389
+[; ;main.c: 410: Configure_Timer_Interrupt();
+"410
 [e ( _Configure_Timer_Interrupt ..  ]
-[; ;main.c: 391: ADCON1 = 0b00001111;
-"391
-[e = _ADCON1 -> -> 15 `i `uc ]
-[; ;main.c: 392: }
-"392
-[e :UE 356 ]
+[; ;main.c: 411: }
+"411
+[e :UE 357 ]
 }
 [p f _sprintf 11567236 ]
 [a 3C 79 80 69 82 65 84 73 79 78 32 77 79 68 69 58 32 0 ]
@@ -4612,6 +4638,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 7C 76 86 95 77 73 78 95 50 58 32 37 100 37 37 32 32 32 0 ]
 [a 6C 76 86 95 77 73 78 95 49 58 32 37 100 37 37 32 32 32 0 ]
 [a 9C 37 48 50 88 32 37 48 50 88 32 37 48 50 88 32 37 48 50 88 32 32 32 32 32 0 ]
-[a 4C 65 85 84 79 77 65 84 73 67 32 32 32 32 32 32 0 ]
-[a 5C 77 65 78 85 65 76 32 32 32 32 32 32 32 32 32 0 ]
+[a 4C 65 85 84 79 77 65 84 73 67 32 32 32 32 32 32 32 0 ]
 [a 8C 77 79 68 66 85 83 58 32 32 32 32 32 32 32 32 32 0 ]
+[a 5C 77 65 78 85 65 76 32 32 32 32 32 32 32 32 32 32 0 ]
